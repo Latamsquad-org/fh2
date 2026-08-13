@@ -1,7 +1,0 @@
-layers = [16, 32, 64]
-intervals = [[0, 23], [24, 44], [45, 100]]
-front = ["east"]
-date = "1945-04-16"
-teams = ["Germany", "Russia"]
-version_added = "2.5"
-authors = ["Blander"]

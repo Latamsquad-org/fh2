@@ -1,7 +1,0 @@
-layers = [16, 32, 64]
-intervals = [[16, 32], [33, 59], [60, 100]]
-front = ["west_late"]
-date = "1944-15-07"
-teams = ["Germany", "Canada"]
-version_added = "Event"
-authors = ["Papillon"]

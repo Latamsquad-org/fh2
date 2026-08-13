@@ -1,0 +1,11 @@
+2026-08-12 21:50:37,703: [CONNECT] Player [KKCK] Chaziz with Hash 4a64aa3317f2bc80a2c7b8cbbb5c6908, IP 181.42.23.100, ID 465116672
+2026-08-12 21:52:12,036: [CHAT Global: Chaziz] !kill chaz
+2026-08-12 21:52:58,079: [CHAT Team: Chaziz] !runnext
+2026-08-12 22:03:20,776: [CHAT Global: Chaziz] !reload
+2026-08-12 22:03:41,407: [CHAT Global: Chaziz] !setnext ogledow
+2026-08-12 22:03:47,098: [CHAT Team: Chaziz] !setnext ogle
+2026-08-12 22:03:55,674: [CHAT Global: Chaziz] !setnext ogledow cq
+2026-08-12 22:04:06,805: [CHAT Global: Chaziz] !setnext ogle 16 cq
+2026-08-12 22:04:20,595: [CHAT Global: Chaziz] !setnext ogle 32 cq
+2026-08-12 22:04:29,210: [CHAT Global: Chaziz] !setnext ogle 128 cq
+2026-08-12 22:04:45,494: [DISCONNECT] Player [KKCK] Chaziz with Hash 4a64aa3317f2bc80a2c7b8cbbb5c6908, IP 181.42.23.100, ID 465116672
