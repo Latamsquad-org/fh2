@@ -1,0 +1,68 @@
+rem ** Basic attack **
+
+aiStrategy.createConstantCondition basicEnemyCPCond Crisp EqualGreater Enemy ControlPoint 1
+rem aiStrategy.setConditionStrength Required
+aiStrategy.setConditionStrength Advisory
+
+aiStrategy.createConstantCondition basicNeutralCPCond Crisp EqualGreater Friendly NumberOfNeutralAreas 1
+rem aiStrategy.setConditionStrength Required
+aiStrategy.setConditionStrength Advisory
+
+aiStrategy.createPrerequisite basicEnemyPrereq
+aiStrategy.addCondition basicEnemyCPCond    20.0
+aiStrategy.addCondition basicNeutralCPCond  20.0
+
+aiStrategy.createStrategy basicAttackEnemy
+aiStrategy.Aggression 1
+aiStrategy.NumberOfAttacks 3
+aiStrategy.NumberOfDefences 0
+aiStrategy.setStrategicObjectsModifier ControlPoint      10.0 Hostile
+aiStrategy.setStrategicObjectsModifier ControlPoint      12.0 Neutral
+aiStrategy.setPrerequisite basicEnemyPrereq
+
+
+rem ** Defend (Axis) **
+
+rem Note: aiFixups Python plugin automatically assigns the North flag to Axis CPs to defend.
+rem Avoid using North in StrategicAreas.ai.
+rem Also, the name of the strategy - guard1, is used in aiFixups, so don't change it.
+
+aiStrategy.createConstantCondition noNeutralCond Crisp Equal Friendly NumberOfNeutralAreas 0
+aiStrategy.setConditionStrength Required
+
+aiStrategy.createConstantCondition hasNorthCond Crisp EqualGreater Friendly North 1
+aiStrategy.setConditionStrength Required
+
+aiStrategy.createPrerequisite guard1Prereq
+aiStrategy.addCondition hasNorthCond   1.0
+aiStrategy.addCondition noNeutralCond  1.0
+
+aiStrategy.createStrategy guard1
+aiStrategy.Aggression 0
+aiStrategy.NumberOfAttacks 0
+aiStrategy.NumberOfDefences 4
+aiStrategy.setStrategicObjectsModifier ControlPoint 0.1 Owned
+aiStrategy.setStrategicObjectsModifier North 200.0
+aiStrategy.setPrerequisite guard1Prereq
+
+
+rem ** Defend (Allies) **
+
+rem Note: aiFixups Python plugin automatically assigns the South flag to Allied CPs to defend.
+rem Avoid using South in StrategicAreas.ai.
+rem Also, the name of the strategy - guard2, is used in aiFixups, so don't change it.
+
+aiStrategy.createConstantCondition hasSouthCond Crisp EqualGreater Friendly South 1
+aiStrategy.setConditionStrength Required
+
+aiStrategy.createPrerequisite guard2Prereq
+aiStrategy.addCondition hasSouthCond   1.0
+aiStrategy.addCondition noNeutralCond  1.0
+
+aiStrategy.createStrategy guard2
+aiStrategy.Aggression 0
+aiStrategy.NumberOfAttacks 0
+aiStrategy.NumberOfDefences 4
+aiStrategy.setStrategicObjectsModifier ControlPoint 0.1 Owned
+aiStrategy.setStrategicObjectsModifier South 200.0
+aiStrategy.setPrerequisite guard2Prereq

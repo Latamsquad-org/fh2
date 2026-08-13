@@ -1,0 +1,26 @@
+<map>
+	
+<name> Sidi Rezegh </name>
+	
+<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Sidi_Rezegh"> Sidi Rezegh </briefing>
+	
+<music> common/sound/menu/music/lili_marlene.ogg </music>
+	
+<modes>
+		<mode type="gpm_cq">
+         <maptype ai="1" players="16" type="push" locid="GAMEMODE_DESCRIPTION_push2"></maptype>
+         <maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+         <maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+         <maptype ai="1" players="128" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+      </mode>
+      <mode type="gpm_coop">
+         	<maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_COOP_headon"></maptype>
+      		<maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_COOP_headon"></maptype>
+      		<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+      </mode>
+      <mode type="sp1"/>
+      <mode type="sp2"/>
+      <mode type="sp3"/>
+   </modes>
+</map>
+

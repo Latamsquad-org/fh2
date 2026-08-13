@@ -1,0 +1,26 @@
+<map>
+	<name> Crete </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Crete_1941">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/radetzky.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+			<maptype ai="1" players="32" type="assault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+			<maptype ai="1" players="64" type="assault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="assault" locid="GAMEMODE_DESCRIPTION_COOP_assault"></maptype>
+			<maptype ai="1" players="32" type="assault" locid="GAMEMODE_DESCRIPTION_COOP_assault"></maptype>
+			<maptype ai="1" players="64" type="assault" locid="GAMEMODE_DESCRIPTION_COOP_assault"></maptype>
+		</mode>
+		<mode type="sp1">
+			<maptype ai="1" players="16" type="push" locid="GAMEMODE_DESCRIPTION_push"></maptype>
+		</mode>
+		<mode type="sp2">
+			<maptype ai="1" players="32" type="assault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+		</mode>
+		<mode type="sp3">
+			<maptype ai="1" players="64" type="assault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+		</mode>
+	</modes>
+</map>

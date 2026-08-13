@@ -1,0 +1,19 @@
+<map>
+	<name> Siege of Tobruk </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Siege_of_Tobruk">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="0" players="16" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="0" players="32" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_push2">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_COOP_doubleassault">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="sp3">
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>
+

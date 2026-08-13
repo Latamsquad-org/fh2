@@ -1,0 +1,21 @@
+<map>
+	<name>Operation Totalize</name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_operation_totalize">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+		 <maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+         <maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+         <maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+            <maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+		</mode>
+		<mode type="sp1"/>
+		<mode type="sp2"/>
+		<mode type="sp3"/>
+	</modes>
+</map>
+

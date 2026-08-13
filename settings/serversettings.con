@@ -1,0 +1,80 @@
+rem Name of the server for the server list
+sv.serverName "[LATAMSQUAD] #1 Mapas Mixtos - Ranked - 2.67"
+rem Password for joining the server
+sv.password ""
+rem 1 for internet servers, 0 for everything else
+sv.internet 1
+rem IPv4 of the server
+sv.serverIP "172.84.94.108"
+rem Port of the server
+sv.serverPort 16571
+rem Port to query server information
+sv.gameSpyPort 29904
+rem 1 to enable VoIP server
+sv.voipEnabled 1
+rem defines VoIP quality 1 to 8
+sv.voipQuality 8
+rem 1 to enable remote VoIP server
+sv.voipServerRemote 1
+rem IPv4 of the VoIP server to use
+sv.voipServerRemoteIP "172.84.94.108"
+rem IPv4 port of the VoIP server to use
+sv.voipServerPort 55125
+sv.voipBFClientPort 55123
+sv.voipBFServerPort 55124
+rem VoIP server secret shared password
+sv.voipSharedPassword "WptJlD6yXuaHF3T4"
+rem Message displayed in loading screen
+sv.welcomeMessage "Bienvenido a LATAMSQUAD Forgotten Hope 2! Lee las reglas en discord.gg/latamsquad"
+
+sv.punkBuster 0
+sv.allowFreeCam 1
+sv.allowExternalViews 1
+sv.allowNoseCam 1
+sv.hitIndicator 1
+sv.maxPlayers 100
+sv.numPlayersNeededToStart 1
+sv.notEnoughPlayersRestartDelay 15
+sv.startDelay 15
+sv.endDelay 15
+sv.spawnTime 15
+sv.manDownTime 2.5
+sv.endOfRoundDelay 15
+sv.ticketRatio 200
+sv.roundsPerMap 1
+sv.timeLimit 0
+sv.scoreLimit 0
+sv.soldierFriendlyFire 100
+sv.vehicleFriendlyFire 100
+sv.soldierSplashFriendlyFire 100
+sv.vehicleSplashFriendlyFire 100
+sv.tkPunishEnabled 1
+sv.tkNumPunishToKick 3
+sv.tkPunishByDefault 0
+sv.votingEnabled 1
+sv.voteTime 90
+sv.minPlayersForVoting 2
+sv.teamVoteOnly 1
+sv.allowNATNegotiation 0
+sv.interfaceIP ""
+sv.autoRecord 0
+sv.demoIndexURL https://latamsquad.org/project-reality/#complementos
+sv.demoDownloadURL https://latamsquad.org/project-reality/#complementos
+sv.autoDemoHook "adminutils/demo/rotate_demo.exe"
+sv.demoQuality 8
+sv.adminScript "default"
+sv.timeBeforeRestartMap 30
+sv.autoBalanceTeam 0
+sv.teamRatioPercent 100
+sv.coopBotRatio	50
+sv.coopBotCount	48
+sv.coopBotDifficulty 70
+sv.useGlobalRank 1
+sv.useGlobalUnlocks 1
+sv.sponsorText ""
+sv.sponsorLogoURL ""
+sv.communityLogoURL ""
+sv.radioSpamInterval 3
+sv.radioMaxSpamFlagCount 3
+sv.radioBlockedDurationTime 60
+sv.friendlyFireWithMines 1

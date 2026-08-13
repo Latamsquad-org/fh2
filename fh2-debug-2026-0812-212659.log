@@ -1,0 +1,97 @@
+patched stat functions [python/game/__init__.py]
+latamstats loaded [python/game/__init__.py]
+[0.0] scoringCommon::info: scoring common init
+fh2 stats module initialized.
+Snapshot module not found.
+Medal awarding module not found.
+warning: couldn't read "admin/default.cfg": [Errno 2] No such file or directory: 'admin/default.cfg'
+initializing default admin/rcon module
+[0.0] gamemodes::info: patched stat functions [python/game/gamemodes/__init__.py]
+[0.0] gamemodes::info: created new handler for game.gamemodes.gpm_cq
+[0.0] gamemodes::info: registering handler TimeLimitReached <function onTimeLimitReached at 0x064D2FB0>
+[0.0] gpm_cq::info: module initialized
+Reset orderiterator to 0 based on highest pid kept
+Reloading players
+
+****** la_horgne, gpm_cq, 128 - 2026-08-12 21:27:11.536000 (wall time: 12.7535498) ******
+[12.7535498] gpm_cq::info: onGameStatusChanged 1
+[12.7535498] gpm_cq::info: PreGame CP init
+[12.7535498] gamemodes::info: registering handler ControlPointChangedOwner <function onCPStatusChange at 0x064E0270>
+[12.7535498] gpm_cq::info: PreGame plugin bf2_init <game.gameplayPlugin.pluginsystem instance at 0x064D92B0>
+[12.7535498] gameplayPlugin::info: pluginsystem.bf2_init
+[12.7535498] gameplayPlugin::info: hookProxy hooked
+[12.7535498] utilities::info: Cached current round data
+using real stats: no [Errno 2] No such file or directory: 'mods/fh2/server-data.txt'
+[12.7535498] gameplayPlugin::info: loading tankDisable
+[12.7535498] gameplayPlugin::info: loaded standard plugin tankDisable
+[12.7535498] gameplayPlugin::info: loading limitKitNCO
+[12.7535498] gameplayPlugin::info: loaded standard plugin limitKitNCO
+[12.7535498] gameplayPlugin::info: loading artillery
+[12.7535498] gameplayPlugin::info: loaded standard plugin artillery
+[12.7535498] gameplayPlugin::info: loading commanderChair
+[12.7535498] gameplayPlugin::info: loaded standard plugin commanderChair
+[12.7535498] gameplayPlugin::info: loading artilleryReload
+[12.7535498] gameplayPlugin::info: loaded standard plugin artilleryReload
+[12.7535498] gameplayPlugin::info: loading parachute
+[12.7535498] gameplayPlugin::info: loaded standard plugin parachute
+[12.7535498] gameplayPlugin::info: loading awards
+[12.7535498] gameplayPlugin::info: loaded standard plugin awards
+[12.7535498] gameplayPlugin::info: loading deployables
+[12.7535498] gameplayPlugin::info: loaded standard plugin deployables
+[12.7535498] gameplayPlugin::info: loading spawnwave
+[12.7535498] gameplayPlugin::info: loaded standard plugin spawnwave
+[12.7535498] gameplayPlugin::info: loading portee
+[12.7535498] gameplayPlugin::info: loaded standard plugin portee
+[12.7535498] gameplayPlugin::info: loading hudTickets
+[12.7535498] gameplayPlugin::info: loaded standard plugin hudTickets
+[12.7535498] gameplayPlugin::info: loading Announcer
+[12.7535498] gameplayPlugin::info: loaded standard plugin Announcer
+[12.7535498] gameplayPlugin::info: loading BangBang
+[12.7535498] gameplayPlugin::info: loaded standard plugin BangBang
+[12.7535498] gameplayPlugin::info: loading Carousel
+[12.7535498] gameplayPlugin::info: loaded standard plugin Carousel
+[12.7535498] gameplayPlugin::info: loading Greeter
+[12.7535498] gameplayPlugin::info: loaded standard plugin Greeter
+[12.7535498] gameplayPlugin::info: loading IdleTracker
+[12.7535498] gameplayPlugin::info: loaded standard plugin IdleTracker
+[12.7535498] gameplayPlugin::info: loading PlayerLogger
+[12.7535498] gameplayPlugin::info: loaded standard plugin PlayerLogger
+[12.7535498] gameplayPlugin::info: loading SpeedoMeter
+[12.7535498] gameplayPlugin::info: loaded standard plugin SpeedoMeter
+[12.7535498] gameplayPlugin::info: loading ADFSmartBalance
+[12.7535498] gameplayPlugin::info: loaded standard plugin ADFSmartBalance
+[12.7535498] gameplayPlugin::info: loading TeamKillLogger
+[12.7535498] gameplayPlugin::info: loaded standard plugin TeamKillLogger
+[12.7535498] gameplayPlugin::info: loading VoteChat
+[12.7535498] gameplayPlugin::info: loaded standard plugin VoteChat
+[12.7535498] gameplayPlugin::info: Setting default ticket loss for team 1 to 10
+[12.7535498] gameplayPlugin::info: Setting default ticket loss for team 2 to 10
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 0, 'kit': 'GW_Scout_early_limited', 'limit': 0.1, 'team': 1})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 0, 'kit': 'FA_Spahi_Scout_limited', 'limit': 0.1, 'team': 2})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 1, 'kit': 'GW_SMGAssault_mp38_early_Limited', 'limit': 0.13, 'team': 1})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 1, 'kit': 'FA_Spahi_RiflemanGL', 'limit': 0.13, 'team': 2})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 3, 'kit': 'GW_LMG_early_Limited', 'limit': 0.13, 'team': 1})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 3, 'kit': 'FA_Spahi_LMG', 'limit': 0.18, 'team': 2})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 4, 'kit': 'GW_RifleAssault_early_limited', 'limit': 0.13, 'team': 1})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 4, 'kit': 'FA_Spahi_Rifleman_Limited', 'limit': 0.13, 'team': 2})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 5, 'kit': 'GW_AntitankAssault_GeballteLadung', 'limit': 0.1, 'team': 1})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.limitKit.limitKit'>, {'slot': 5, 'kit': 'FA_Spahi_AntiTank', 'limit': 0.18, 'team': 2})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.ticketLoss.ticketLoss'>, {'ticketLoss1': 1000, 'ticketLoss2': 1000})
+[12.7535498] gameplayPlugin::info: Setting default ticket loss for team 1 to 1000
+[12.7535498] gameplayPlugin::info: Setting default ticket loss for team 2 to 1000
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.NCOrifleData.NCOrifleData'>, {'soldiers': ('gw_heer_unteroffizier_early', 'fg_spahi_sgt'), 'kits': ('GW_NCO_early', 'FA_Spahi_NCO')})
+[12.7535498] gameplayPlugin::info: (<class 'game.plugins.teamSPs.teamSPs'>, {})
+[12.7535498] gameplayPlugin::info: loaded 34 plugins
+[12.7535498] gpm_cq::info: Playing plugin round_start <game.gameplayPlugin.pluginsystem instance at 0x064D92B0>
+[12.7535498] gameplayPlugin::info: pluginsystem.round_start
+[12.7535498] gamemodes::info: registering handler TicketLimitReached <function onTicketLimitReached at 0x064E0130>
+[12.7535498] gamemodes::info: registering handler PlayerDeath <function onPlayerDeathCQ at 0x064E02B0>
+[12.7535498] gamemodes::info: registering handler PlayerKilled <function onPlayerKilledCQ at 0x064E02F0>
+[12.7535498] gamemodes::info: registering handler PlayerRevived <function onPlayerRevived at 0x064E0330>
+[12.7535498] gamemodes::info: registering handler PlayerSpawn <function onPlayerSpawn at 0x064E0370>
+[12.7535498] gpm_cq::info: CP_timer started
+[12.7535498] gpm_cq::info: Gamemode initialized.
+chat: pid=-1 text='$c@g Puedes apelar un baneo en discord.gg/latamsquad' channel=ServerMessage
+chat: pid=-1 text='$c@g Puedes apelar un baneo en discord.gg/latamsquad' channel=ServerMessage
+chat: pid=-1 text='$c@g Puedes apelar un baneo en discord.gg/latamsquad' channel=ServerMessage
+chat: pid=-1 text='$c@g Puedes apelar un baneo en discord.gg/latamsquad' channel=ServerMessage

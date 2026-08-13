@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 25], [26, 54], [55, 100]]
+front = ["west_late"]
+date = "1944-06-06"
+teams = ["Germany", "USA"]
+version_added = "2.46"
+authors = ["Mr_Cheese", "Remick08", "Ts4EVER", "Stubbfan"]

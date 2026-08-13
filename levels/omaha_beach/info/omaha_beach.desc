@@ -1,0 +1,20 @@
+<map>
+	<name> Omaha Beach </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_omaha_beach">map description for modders maps not localized (english only)</briefing>
+	<music> levels/omaha_beach/music/glenn_miller__in_the_mood_1941.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+            <maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_koth" >Unlocalized test for this mode on this map</maptype> 
+            <maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_sectorpush">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+            <maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_koth" >Unlocalized test for this mode on this map</maptype> 
+            <maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_sectorpush">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="sp1"></mode>
+	    <mode type="sp2"></mode>
+		<mode type="sp3"></mode>
+	</modes>
+</map>

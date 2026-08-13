@@ -1,0 +1,28 @@
+<map>
+	<name> Mersa Matruh </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Mersa_Matruh">map description for modders maps not localized (english only)</briefing>
+	<music> levels/Mersa_Matruh/music/Heimat_deine_Sterne.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_assault">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="sp1">
+			<maptype ai="1" players="16" type="doubleassault" locid="LOADINGSCREEN_MAPDESCRIPTION_Mersa_Matruh">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="sp2">
+			<maptype ai="1" players="32" type="doubleassault" locid="LOADINGSCREEN_MAPDESCRIPTION_Mersa_Matruh">Unlocalized test for this mode on this map</maptype>
+		</mode>
+           	<mode type="sp3">
+			<maptype ai="1" players="64" type="doubleassault" locid="LOADINGSCREEN_MAPDESCRIPTION_Mersa_Matruh">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_coop_assault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_coop_assault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_coop_assault">Unlocalized test for this mode on this map</maptype>
+		</mode>
+
+	</modes>
+</map>
+

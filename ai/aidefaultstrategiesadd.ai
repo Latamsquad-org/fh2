@@ -1,0 +1,9 @@
+rem *** Add Strategies ***
+
+rem --- Axis ---
+ai.addSAIStrategy 1 basicAttackEnemy
+ai.addSAIStrategy 1 guard1
+
+rem --- Allies ---
+ai.addSAIStrategy 2 basicAttackEnemy
+ai.addSAIStrategy 2 guard2

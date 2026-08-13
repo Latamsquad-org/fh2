@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 25], [32, 33], [36, 80]]
+front = ["africa"]
+date = "1943-05-07"
+teams = ["Germany", "Great Britain"]
+version_added = "2.15"
+authors = ["Otolikos"]

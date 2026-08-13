@@ -1,0 +1,12 @@
+patched stat functions [python/game/__init__.py]
+latamstats loaded [python/game/__init__.py]
+[0.0] scoringCommon::info: scoring common init
+fh2 stats module initialized.
+Snapshot module not found.
+Medal awarding module not found.
+warning: couldn't read "admin/default.cfg": [Errno 2] No such file or directory: 'admin/default.cfg'
+initializing default admin/rcon module
+[0.0] gamemodes::info: patched stat functions [python/game/gamemodes/__init__.py]
+[0.0] gamemodes::info: created new handler for game.gamemodes.gpm_cq
+[0.0] gamemodes::info: registering handler TimeLimitReached <function onTimeLimitReached at 0x0611AFB0>
+[0.0] gpm_cq::info: module initialized

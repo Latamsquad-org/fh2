@@ -1,0 +1,10 @@
+<map>
+	<name> zzz Menu Fix zzz </name>
+	<briefing> Fix for SP menu scrollbar issue, this is not a real map.  DO NOT START. </briefing>
+	<music> </music>
+   <modes>
+      <mode type="gpm_cq">
+         <maptype ai="1" players="16"></maptype>
+      </mode>
+   </modes>
+</map>

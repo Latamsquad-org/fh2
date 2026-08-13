@@ -1,0 +1,14 @@
+<map>
+	<name> Firing Range Plus</name>
+
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Firing_Range">map description for modders maps not localized (english only)</briefing>
+
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+		
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_FRP_64">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>
+

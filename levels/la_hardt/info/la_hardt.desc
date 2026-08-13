@@ -1,0 +1,21 @@
+<map>
+	<name> La Hardt Forest </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_la_hardt">map description for modders maps not localized (english only)</briefing>
+	<music> levels/la_hardt/music/la-strasbourgeoise.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+		    <maptype players="128" type="doubleassault" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_koth">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+<mode type="gpm_coop">
+			<maptype ai="1" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+</mode>
+<mode type="sp2"></mode>
+<mode type="sp3"></mode>				
+</modes>
+
+</map>
+

@@ -1,0 +1,18 @@
+<map>
+	<name> Pointe du Hoc </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Pointe_du_Hoc">Pointe du Hoc</briefing>
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+         <maptype players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_pdh">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="32" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>      
+      		<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_COOP_doubleassault"></maptype>
+		</mode>
+		<mode type="sp2"></mode>
+		<mode type="sp3"></mode>
+	</modes>
+</map>

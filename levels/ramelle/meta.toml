@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[10, 27], [28, 49], [50, 80]]
+front = ["west_late"]
+date = "1944-06-13"
+teams = ["Germany", "USA"]
+version_added = "2.3"
+authors = ["Otolikos"]

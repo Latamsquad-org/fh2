@@ -1,0 +1,76 @@
+rem |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+rem |-------------------------------------------------------------------------------|
+rem |                          Forgotten Hope 2 Map List                            |
+rem |-------------------------------------------------------------------------------|
+rem |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+rem mapList.append <mapname> <gamemode> <size>
+rem |-------------------------------------------------------------------------------|
+rem |          						Conquest - Tiny						            |
+rem |-------------------------------------------------------------------------------|
+mapList.append la_horgne gpm_cq 128
+mapList.append ogledow gpm_cq 128
+mapList.append seelow gpm_cq 128
+mapList.append sidi_rezegh gpm_cq 128
+
+
+rem |-------------------------------------------------------------------------------|
+rem |          						Conquest - Small - 16 						    |
+rem |-------------------------------------------------------------------------------|
+mapList.append ramelle gpm_cq 16
+mapList.append alam_halfa gpm_cq 16
+mapList.append arad gpm_cq 16
+mapList.append bardia gpm_cq 16
+mapList.append bastogne gpm_cq 16
+mapList.append battle_of_brest gpm_cq 16
+mapList.append battle_of_keren gpm_cq 16
+mapList.append crete_1941 gpm_cq 16
+mapList.append dukla_pass gpm_cq 16
+mapList.append el_alamein gpm_cq 16
+mapList.append falaise_pocket gpm_cq 16
+mapList.append flavion gpm_cq 16
+mapList.append gazala gpm_cq 16
+mapList.append giarabub gpm_cq 16
+mapList.append gold_beach gpm_cq 16
+mapList.append ihantala gpm_cq 16
+mapList.append la_horgne gpm_cq 16
+mapList.append lebisey gpm_cq 16
+mapList.append lenino gpm_cq 16
+mapList.append mareth_line gpm_cq 16
+mapList.append mersa_matruh gpm_cq 16
+mapList.append motovskiy_bay gpm_cq 16
+mapList.append mount_olympus gpm_cq 16
+mapList.append ogledow gpm_cq 16
+mapList.append omaha_beach gpm_cq 16
+mapList.append operation_cobra gpm_cq 16
+mapList.append operation_hyacinth gpm_cq 16
+mapList.append operation_luttich gpm_cq 16
+mapList.append operation_mars gpm_cq 16
+mapList.append operation_totalize gpm_cq 16
+mapList.append pegasus gpm_cq 16
+mapList.append sammatus gpm_cq 16
+mapList.append seelow gpm_cq 16
+mapList.append sidi_bou_zid gpm_cq 16
+mapList.append sidi_rezegh gpm_cq 16
+mapList.append st_lo_breakthrough gpm_cq 16
+mapList.append st_vith gpm_cq 16
+mapList.append stonne gpm_cq 16
+mapList.append studienka gpm_cq 16
+mapList.append supercharge gpm_cq 16
+mapList.append tali gpm_cq 16
+mapList.append verdenne gpm_cq 16
+mapList.append villers_bocage gpm_cq 16
+mapList.append vossenack gpm_cq 16
+
+rem |-------------------------------------------------------------------------------|
+rem |          						Conquest - Medium - 32 							|
+rem |-------------------------------------------------------------------------------|
+mapList.append ramelle gpm_cq 32
+
+
+
+
+rem |-------------------------------------------------------------------------------|
+rem |          						Conquest - Big - 64 							|
+rem |-------------------------------------------------------------------------------|
+mapList.append ramelle gpm_cq 64

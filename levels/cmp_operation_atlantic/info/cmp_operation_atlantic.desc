@@ -1,0 +1,13 @@
+<map>
+	<name> CMP Operation Atlantic </name>
+	<briefing locid="Operation Atlantic (18–21 July 1944) was a Canadian offensive during the Battle of Normandy in the Second World War. The offensive, launched in conjunction with Operation Goodwood by the Second Army, was part of operations to seize the French city of Caen and vicinity from German forces. It was initially successful, with gains made on the flanks of the Orne River near Saint-Andre-sur-Orne but an attack by the 4th and 6th Canadian Infantry Brigades of the 2nd Canadian Infantry Division, against strongly defended German positions on Verrières Ridge to the south was a costly failure.">map description for modders maps not localized (english only)</briefing>
+	<music> Levels/cmp_operation_atlantic/music/Map_Load_Music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>
+

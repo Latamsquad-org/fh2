@@ -1,0 +1,26 @@
+<map>
+	<name> Pegasus </name>
+<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_pegasus">map description for modders maps not localized (english only)</briefing>
+<music> levels/pegasus/pegasusload.ogg </music>
+
+<modes> 
+	<mode type="gpm_cq">
+		<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_pegasus" >Unlocalized test for this mode on this map</maptype>
+		
+		</mode>
+
+<mode type="gpm_coop">
+		<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_pegasus" >Unlocalized test for this mode on this map</maptype>
+		
+</mode>
+<mode type="sp1"></mode>
+<mode type="sp2"></mode>
+<mode type="sp3"></mode>
+				
+</modes>
+
+</map>

@@ -1,0 +1,8 @@
+layers = [16, 32, 64]
+intervals = [ [ 0, 18,], [ 19, 40,], [ 41, 85,],]
+front = [ "africa",]
+themes = [ "africa",]
+date = "1942-11-01"
+teams = [ "Germany", "France",]
+version_added = "TODO"
+authors = ["Ts4EVER"]

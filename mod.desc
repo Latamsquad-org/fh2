@@ -1,0 +1,12 @@
+<mod>
+	<title>Forgotten Hope 2</title>
+	<desc>Forgotten Hope 2 is a World War II modification focused on historical accuracy and gameplay.</desc>
+	<url>http://www.fhmod.org</url>
+	<logo>mod.png</logo>
+	<icon>mod_icon.png</icon>
+	<music>common/sound/menu/music/menu_music.ogg</music>
+	<version>5.5.614</version>
+	<default_soldier_template>gw_heer_maschinenpistole</default_soldier_template>
+	<default_soldier_kit_template>GW_RifleAssault</default_soldier_kit_template>
+	<editorversion>Battlefield2</editorversion>
+</mod>

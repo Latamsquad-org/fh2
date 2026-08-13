@@ -1,0 +1,13 @@
+<map>
+	<name> CMP Berlin </name>
+	<briefing> A garrison consisting of some 200,000 German soldiers (depleted and disorganised Wehrmacht and Waffen-SS divisions, along with poorly trained Volkssturm and Hitler Youth members) remained in Berlin, along with some 2,000,000  civilians. In a meeting in Moscow, the plan was laid down to march on Germany's capital in April of 1945 in an attempt to beat the Western Allies to the prize. The offensive was launched in the morning hours of April 16th with a stellar barrage of artillery followed by air attacks, tanks and men. Competition between the two Soviet generals (Marshals Georgi Zhukov and Ivan Koniev) drove them through the German defenses led by General Helmuth Weidling though fighting was bitter and earned in blood. </briefing>
+	<music> levels/cmp_berlin/music/berlin.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_sectorpush">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+	
+		</mode>
+	</modes>
+</map>

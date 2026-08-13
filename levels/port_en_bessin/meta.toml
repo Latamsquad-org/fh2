@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[8, 30], [31, 59], [60, 100]]
+front = ["west_late"]
+date = "1944-06-07"
+teams = ["Germany", "Great Britain"]
+version_added = "2.26"
+authors = ["Schism"]

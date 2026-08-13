@@ -1,0 +1,18 @@
+<map>
+	<name> CMP Wake Island </name>
+	<briefing>The Battle of Wake Island began simultaneously as the attack on Pearl Harbor naval/air bases and ended on 23 December 1941.  Later to be known as the Alamo of the Pacific - It was fought on and around the atoll formed by Wake Island and its minor islets of Peale and Wilkes Islands with Marines playing a prominent role on both sides. 
+
+Early on the morning of 11 December, the garrison, with the support of four remaining Wildcats, repelled the first Japanese landing attempt.  The second Japanese invasion force came on 23 December, composed mostly of the ships from the first attempt and 1,500 Japanese Marines.  After a full night and morning of fighting, the Wake garrison and civilians surrendered to the Japanese by mid-afternoon.  It was occupied until 4 September 1945, when the remaining Japanese garrison surrendered to a detachment of US Marines after the formal surrender of Japan.  Map by Watchtower</briefing>
+	<music> Levels/cmp_wake_island/sound/wake_island_intro2.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_cq">
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_cq">
+			<maptype players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>

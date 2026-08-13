@@ -1,0 +1,12 @@
+<map>
+	<name> CMP Foy </name>
+	<briefing locid="The Battle of Foy (20 December 1944-14 January 1945) was between the US Army and the German Wehrmacht that occurred as a part of the Battle of the Bulge in the winter of 1944-45.  On 20 December 1944, during the German Ardennes offensive, the 2nd SS Panzer Division Das Reich took the town of Foy from the 101st Airborne's 506th Parachute Infantry Regiment, suffering heavy losses in the process.  The American paratroopers counterattacked on 9 January with assistance from artillery, and repelled an additional German counterattack on 14 January. The Germans later sent a battalion supported by tanks to retake the town again, and succeeded. The Americans counterattacked one final time, suffering significant losses during the house-to-house fighting, but were eventually able to retake the town for good with the help of the 11th Armored Division, after changing hands four times.  Map by Watchtower">map description for modders maps not localized (english only)</briefing>
+	<music> levels/cmp_foy/CarlDavis_TheWorldatWar.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			 <maptype players="16" type="koth" locid="GAMEMODE_DESCRIPTION_koth">Unlocalized test for this mode on this map</maptype>
+			 <maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			 <maptype players="64" type="sectorpush" locid="GAMEMODE_DESCRIPTION_sectorpush">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>

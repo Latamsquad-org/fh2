@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 20], [40, 59], [60, 100]]
+front = ["west_late"]
+date = "1944-11-02"
+teams = ["Germany", "USA"]
+version_added = "2.4"
+authors = ["kettcar"]

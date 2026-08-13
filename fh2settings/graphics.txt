@@ -1,0 +1,33 @@
+rem Remove "rem"s to force high quality shadows. I'm especially interested in bitdepth on ati cards
+shadowManager.shadowMapSize 2048
+shadowManager.shadowMapDepthDistance 80
+rem shadowManager.shadowMapBitDepth 24
+rem shadowManager.shadowMapDepthBias 0.005
+rem shadowManager.shadowMapSlopeBias 1
+
+beginrem
+shadowManager.shadowMapSlopeBias 1 *** unknown
+shadowManager.shadowMapSize 1024 *** shadow map size, higher gives sharper shadows
+shadowManager.shadowMapDepthDistance 40 *** shadow map depth, higher gives less sharp shadows but visible further away
+shadowManager.shadowMapDepthBias 0.005 *** how small polygons can render shadows
+shadowManager.shadowMapObjectSize 256 *** unknown
+shadowManager.shadowMapBitDepth 24 *** unknown
+endrem
+
+rem *** lights ***
+rem lightmanager.maxlightsperbundledmesh 3
+rem lightmanager.maxlightsperskinnedmesh 3
+rem lightmanager.maxlightsperstaticmesh 3
+rem *** default 7 *** terrain
+rem lightmanager.maxlightsperterrainpatch 7
+rem *** default 10m *** players lighting distance
+rem lightmanager.skinnedmeshshaderloddistance 10
+
+rem default 3.5 *** tvgrain, the smaller the value, the larger the grain. Try between 0.5 - 9.
+rem renderer.tvgranularity 3.5
+rem Renderer.drawPostProduction 1
+
+rem default 100 *** max FPS. Setting higher or lower may cause different in respect to framerate/refresh rate synchronization.
+rem game.lockfps 100
+
+settingsManager.floatSet GSKitCullRadius 4

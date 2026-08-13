@@ -1,0 +1,13 @@
+<map>
+	<name> CMP Tulagi </name>
+	<briefing locid="The Battle of Tulagi was a land battle in the Pacific theatre of war. The battle was fought between the forces of the Imperial Japanese Navy and the United States Marine. The battle took place during the inital Allied landings in the Guadalcanal campaign. In contrast to the intense fighting on Tulagi, the landings on Guadalcanal were essentially unopossed.The Japanese forces where determined to defend Tulagi to the end. Fh2 map made by Stubbfan and Pr0z4c.">map description for modders maps not localized (english only)</briefing>
+	<music> levels/cmp_tulagi/sound/Japanese.ogg</music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="0" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="0" players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="0" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>
+

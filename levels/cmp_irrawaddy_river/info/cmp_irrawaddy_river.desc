@@ -1,0 +1,28 @@
+<map>
+    <name> CMP Irrawaddy River </name>
+    <briefing locid="Starting on 17 February, 255th Indian Tank Brigade and the motorised infantry brigades of 17th Division began crossing into 7th Division's bridgehead. This crossing threatened to be a disaster due to leaky boats and faulty engines, but in late February 1945, the motor elements of the division, with the bulk of 255th Indian Tank Brigade under command, crossed the Irrawaddy River and advanced on the vital Japanese communications centre of Meiktila. Joined by 99th Indian Infantry Brigade which was flown into the captured airfield at Thabutkon, they captured Meiktila in only four days. Reinforced by 9th Indian Infantry Brigade which was flown into the airfields around Meiktila, they subsequently withstood a Japanese siege. This Battle of Meiktila largely destroyed the Japanese armies in Central Burma.">map description for modders maps not localized (english only)</briefing>
+    <music> Levels/cmp_irrawaddy_river/sound/taikodrums.ogg</music>
+    <modes>
+        <mode type="gpm_cq">
+            <maptype
+                players="16"
+                type="headon"
+                locid="GAMEMODE_DESCRIPTION_headon">
+                    Unlocalized test for this mode on this map
+            </maptype>
+            <maptype
+                players="32"
+                type="headon"
+                locid="GAMEMODE_DESCRIPTION_headon">
+                    Unlocalized test for this mode on this map
+            </maptype>
+            <maptype
+                players="64"
+                type="headon"
+                locid="GAMEMODE_DESCRIPTION_headon">
+                    Unlocalized test for this mode on this map
+            </maptype>
+        </mode>
+    </modes>
+</map>
+

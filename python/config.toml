@@ -1,0 +1,149 @@
+[general]
+# increases log verbosity
+# [default: false]
+debug = false
+
+# enable some beta specials like additional cams
+# [default: false]
+beta = false
+
+# allow running beta commands, and all commands from all admin levels
+# [default: false]
+enable_beta_commands = false
+
+# random seed. DO NOT TOUCH THIS unless you know what you are doing
+# and want to debug some randomization behaviour
+# must be an integer, or something that can be cast to integer
+# if you want to disable using a fixed seed, put an empty string (the default)
+# example: random_seed = 42
+# [default: random_seed = ""]
+random_seed = ""
+
+
+[messages]
+# displayed on first spawn after join
+# the <PLAYER> token will be replaced with the actual player name
+# if you want to disable this, put `welcome = ""`
+# e.g.:
+# welcome = "Welcome to the FH2 Test Server, <PLAYER>!"
+# [default: ""]
+welcome = "Bienvenido a LATAMSQUAD FH2!"
+
+# short line pointing to server rules website
+rules = "For Rules visit https://playfh2.com/stats/?go=server-rules"
+
+# those will be displayed regularly 
+# if you want to disable these, put `announce = []`
+# [default: []]
+announce = [
+   "Puedes apelar un baneo en discord.gg/latamsquad",
+  # "Check out fhmod.org for news",
+  # "We love you all <3",
+  # "Jean a une longue mustache honhonhon",
+  # "bibedi babedi bubedi",
+]
+
+# if using announce, this is the interval in seconds
+# [default: 300]
+announce_interval = 300
+
+# display message on disconnect. recommended to only disable this if another
+# "X has disconnected" print script is active in parallel
+show_disconnect = true
+
+# display admin message on connect
+show_connect = true
+
+
+[janitor]
+# use the afk/idle checker? [default: false]
+enable_afk_tracking = false
+
+# don't start kicking AFKs unless at least X players online
+min_players_for_kick = 20
+
+# if min_players_for_kick has not been reached, at least balance the AFKs?
+balance_afks_before_minplayers = true
+
+# seconds until you get kicked/balanced
+max_idle_time = 180
+idle_check_interval = 30
+
+# how many degrees the player can turn while still considered idle
+idle_yaw_threshold = 0.5
+
+# bantime in seconds
+# good default is two weeks: 1209600 = 60 * 60 * 24 * 14
+# FYI there also is a separate round-ban and a day-ban
+ban_duration = 1209600
+
+
+[maps]
+randomize_maps = false
+
+# favorite maps that should appear more often in the rotation
+# e.g. newly released maps; 
+favorites = ['stonne', 'flavion', 'la_horgne', 'operation_mars']
+# favorites = []    
+
+favorite_weight = 20.0
+
+# don't repeat maps
+n_last_played = 12
+
+# don't repeat theatres (africa, winter, urban, ...)
+n_last_fronts = 1
+
+# don't repeat gameplay categories (inf layer, tank layer); defaults is 1
+# DOES NOT DO ANYTHING
+n_last_gameplay_tags = 1
+
+# save list of last played maps (n = n_last_played) into file (mods/fh2/logs/last_played.txt)
+# and restore on server restart for persistent rotation
+save_last_played = false
+
+
+[balance]
+# use the balance system? [default: false]
+enable_autobalance = false
+
+# move everybody to the other team on start (axis players will be allies etc)
+swap_on_start = true
+
+# scramble teams on start
+scramble_on_start = false
+# scramble every X games [1 for doing it every turn]
+scramble_interval = 4
+
+# protect from autobalance?
+# ONLY works DURING a round, NOT at the start
+protect_commander = true
+protect_squadmembers = true
+protect_squadleader = true
+
+# Perform smart balance when the difference of the teams is x or more
+smb_difference = 1
+
+# prevent self switching? [default: false]
+block_self_switch = false
+
+
+[hud]
+# use new notifications (center/right of the screen)
+# instead of the old bf2 notifications *in the killfeed*
+use_new_format = true
+
+
+[stats_api]
+enabled = true
+backend_url = ""
+token = ""
+
+
+[voting]
+vote_runnext_allowed = false
+vote_reroll_allowed = false
+
+# vote duration and time between notifications (all seconds)
+notify_period = 14
+vote_duration = 60

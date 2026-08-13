@@ -1,0 +1,5 @@
+gameLogic.enableVoHelp 1
+renderer.vsync 0
+game.lockFps 100
+renderer.drawFps 0
+renderer.drawNameTags 1

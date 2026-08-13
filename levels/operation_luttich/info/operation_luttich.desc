@@ -1,0 +1,20 @@
+<map>
+	<name> Operation Lüttich </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_operation_luttich">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/old_1940s_version_wellmeetagain.ogg </music>
+	<modes>
+		
+      <mode type="gpm_cq">
+			<maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+	 </mode>
+<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="headon" locid="GAMEMODE_DESCRIPTION_coop_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_coop_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+      <mode type="sp1"></mode>
+      <mode type="sp3"></mode>
+   </modes>
+</map>
+

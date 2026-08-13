@@ -1,0 +1,26 @@
+<map>
+	<name> Mareth Line </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Mareth_Line">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	<mode type="sp1">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	<mode type="sp2">
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	<mode type="sp3">
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_push">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>

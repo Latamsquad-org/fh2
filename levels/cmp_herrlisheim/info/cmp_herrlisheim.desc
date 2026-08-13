@@ -1,0 +1,13 @@
+<map>
+	<name> CMP Herrlisheim </name>
+	<briefing locid="On 31 December 1944, German Army Group G launched a major offensive against the thinly stretched, 110 kilometres long front line held by the U.S. 7th Army. The 553rd Volksgrenadier Division crossed the Rhine River and and established a bridgehead around Gambsheim on January 5th. They were to capture Herrlisheim to widen their bridgehead.On the outskirts of Herrlisheim 12th US Armored Division were ready and waiting for them.">map description for modders maps not localized (english only)</briefing>
+	<music>  Levels/cmp_herrlisheim/music/Malbrough-marsch.ogg</music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>
+

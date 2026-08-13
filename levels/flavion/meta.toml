@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 25], [26, 54], [55, 100]]
+front = ["west_early"]
+date = "1940-05-15"
+teams = ["Germany", "France"]
+version_added = "2.6"
+authors = ["Ts4EVER"]

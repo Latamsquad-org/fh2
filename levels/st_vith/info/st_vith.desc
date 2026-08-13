@@ -1,0 +1,24 @@
+<map>
+	<name>St Vith</name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_st_vith">map description for modders maps not localized (english only)</briefing>
+	<music> common/sound/menu/music/st_vith.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		</mode>	
+		<mode type="gpm_cq">
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+		</mode>	
+                <mode type="gpm_cq">
+			<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_sectorpush" >Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_push" >Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon"></maptype>
+		</mode>
+		<mode type="sp1"/>
+		<mode type="sp2"/>
+		<mode type="sp3"/>
+	</modes>
+</map>

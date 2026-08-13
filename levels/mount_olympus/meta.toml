@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 20], [48, 54], [55, 100]]
+front = ["africa"]
+date = "1941-04-13"
+teams = ["Germany", "New Zealand"]
+version_added = "2.25"
+authors = ["Sorken"]

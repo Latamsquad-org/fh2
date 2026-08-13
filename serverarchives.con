@@ -1,0 +1,13 @@
+rem fh2 archives
+fileManager.mountArchive content/Objects_server.zip Objects
+fileManager.mountArchive content/Objects_Vehicles_server.zip Objects
+fileManager.mountArchive content/Objects_Weapons_server.zip Objects
+fileManager.mountArchive content/Objects_Statics_server.zip Objects
+fileManager.mountArchive content/Menu_server.zip Menu
+fileManager.mountArchive content/Common_server.zip Common
+fileManager.mountArchive content/aifixes_server.zip AIFixes
+
+rem bf2 archives
+fileManager.mountArchive ../../mods/bf2/Objects_server.zip Objects
+fileManager.mountArchive ../../mods/bf2/Menu_server.zip Menu
+fileManager.mountArchive ../../mods/bf2/Common_server.zip Common

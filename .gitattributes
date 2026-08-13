@@ -1,0 +1,11 @@
+# Git LFS: archivos que superan el limite de 100 MiB de GitHub.
+# Docs: https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github
+levels/cmp_minimod/cmp_objects_vehicles_client_textures.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_objects_statics_client_textures.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_common_client.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_objects_vehicles_client.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_objects_client.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_objects_statics_client.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_soldiers_client.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_minimod/cmp_objects_weapons_client_textures.zip filter=lfs diff=lfs merge=lfs -text
+levels/cmp_berlin/objects_client.zip filter=lfs diff=lfs merge=lfs -text

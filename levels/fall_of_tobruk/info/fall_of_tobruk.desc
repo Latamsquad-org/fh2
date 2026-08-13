@@ -1,0 +1,17 @@
+<map>
+	<name> Fall of Tobruk </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Fall_of_Tobruk"> Tobruk </briefing>
+	<music> common/sound/menu/music/lili_marlene.ogg </music>
+	<modes>
+	<mode type="gpm_cq">
+         <maptype ai="0" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault"></maptype>
+         <maptype ai="0" players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+         <maptype ai="1" players="64" type="assault" locid="GAMEMODE_DESCRIPTION_assault"></maptype>
+      </mode>
+      <mode type="gpm_coop">
+      		<maptype ai="1" players="64" type="doubleassault" locid="GAMEMODE_DESCRIPTION_COOP_doubleassault"></maptype>
+      </mode>
+      <mode type="sp3"></mode>
+   </modes>
+</map>
+

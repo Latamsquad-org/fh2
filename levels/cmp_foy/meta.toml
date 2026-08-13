@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[0, 22], [23, 44], [45, 100]]
+front = ["west_late"]
+date = "1944-12-20"
+teams = ["Germany", "USA"]
+version_added = "2.4"
+authors = ["Watchtower"]

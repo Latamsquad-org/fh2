@@ -1,0 +1,23 @@
+rem *** rather straight forward ***
+Vars.Set explosion-camshake-insidevehicle-mod 0.75
+Vars.Set explosion-camshake-maxdamage 150.0
+Vars.Set explosion-camshake-maxforce 50.0
+Vars.Set explosion-camshake-mod 50
+Vars.Set explosion-camshake-ownvehicle-mod 0.75
+
+rem *** unknown location, or if they work at all
+Vars.Set camera-shake-time 1.0
+Vars.Set camera-shake-freq 20.0
+
+rem *** works in debugger only
+rem *** thanks Dice for removing these valueable features!
+Vars.Set camera-shake-frequency 20.0
+Vars.Set camera-expshake-freq 20.0
+Vars.Set camera-expshake-amp 5.0
+Vars.Set camera-expshake-time 1.0
+Vars.Set camera-expshake-insidevehicle-mod 5.0
+Vars.Set camera-recoil-amplitude 1.0
+Vars.Set camera-recoil-speedmod 0.25
+Vars.Set camera-shake-amplitude 0.2
+rem *** my personal favorite, makes tanks cause the ground to rumble out to set distance
+Vars.Set camera-shake-distance 40.0

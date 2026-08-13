@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[8, 25], [40, 64], [64, 100]]
+front = ["east"]
+date = "1944-09-14"
+teams = ["Germany", "Russia"]
+version_added = "2.5"
+authors = ["hitm4k3r"]

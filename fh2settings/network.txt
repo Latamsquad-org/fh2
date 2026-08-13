@@ -1,0 +1,31 @@
+beginrem 
+*** latency computation ***
+*** most of these are serverside
+*** setting them to 0, will cause '42 style hit detection
+*** setting pingfactor to 1, will cause 1.41 style, where you had to aim behind
+*** reminder to self: check haptic settings for merged camerashake
+Vars.Set phy-latencyComp-useClientWindow 1
+Vars.Set phy-latencyComp-useInput 1
+Vars.Set phy-latencyComp-useRenderAhead 0
+Vars.Set phy-latencyComp-maxRenderAheadTime 0.033333
+Vars.Set phy-latencyComp-pingFactor 0.3
+Vars.Set phy-latencyComp-default 0.05
+Vars.Set phy-latencyComp-max 0.3
+Vars.Set phy-latencyComp-debug -1
+
+other potential latency settings
+Vars.Set local-prediction-lerpTime
+Vars.Set local-prediction-minDelay
+Vars.Set objectManager-cullHandleUpdateOnClientFactor
+Vars.Set explosion-latencyComp 1
+
+Settingsmanager.boolSet GSUseClientSidePrediction
+Settingsmanager.boolSet GSUseLatencyCompensation
+Settingsmanager.floatSet GSDefaultLatencyCompensation
+Settingsmanager.? GSExtrapolationTime
+Settingsmanager.? GSInterpolationTime
+endrem
+
+rem when pingFactor is >0 it overcompensates latency because DICE fucked up 
+Vars.Set phy-latencyComp-pingFactor 0
+Vars.Set phy-latencyComp-max 0.5

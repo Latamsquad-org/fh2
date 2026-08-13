@@ -1,0 +1,23 @@
+<map>
+	<name> CMP Raid on Cabanatuan </name>
+	
+<briefing locid="On the night of January 30, 1945, US Army Rangers, Alamo Scouts, and Filipino guerrillas liberated more than 500 Allied prisoners from the POW camp near Cabanatuan City, in the Philippines.
+map by GeoPat"> (english only)</briefing>
+	
+<music> Levels/cmp_raid_on_cabantuan/music/Bayan_Ko_C_De_Guzman_Arranged_By_Jose_Valdez2.ogg </music>
+	
+<modes>
+		
+<mode type="gpm_cq">
+			
+<maptype players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			
+<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			
+<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		
+
+	</modes>
+</map>
+

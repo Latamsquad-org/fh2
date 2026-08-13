@@ -1,0 +1,7 @@
+layers = [16, 32, 64]
+intervals = [[16, 29], [30, 54], [55, 100]]
+front = ["east"]
+date = "1944-08-13"
+teams = ["Germany", "Russia"]
+version_added = "2.53"
+authors = ["Ts4EVER"]

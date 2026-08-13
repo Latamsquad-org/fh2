@@ -1,0 +1,26 @@
+echo *****************************************************************************************
+echo AIDefault.ai ****************************************************************************
+echo *****************************************************************************************
+
+aiSettings.setNSides 2
+aiSettings.setAutoSpawnBots 1
+
+aiSettings.overrideMenuSettings 1
+rem NOTE: the "run UserSettings.ai" below may override the following settings 
+aiSettings.setMaxNBots 63
+aiSettings.maxBotsIncludeHumans 0
+aiSettings.setBotSkill 0.80
+
+run UserSettings.ai
+
+run BotNames.ai
+
+aiSettings.setInformationGridDimension 32
+
+
+run AIPathFinding.ai
+
+rem aiDebug.draw 1
+
+
+rem EOF

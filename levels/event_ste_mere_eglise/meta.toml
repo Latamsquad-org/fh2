@@ -1,0 +1,7 @@
+layers = [ 16, 32, 64,]
+intervals = [ [ 0, 22,], [ 23, 54,], [ 55, 100,],]
+front = [ "develop",]
+themes = [ "develop",]
+date = "1944-06-06"
+teams = ["Germany", "USA"]
+authors = ["Team Contact", "CptBocquier", "Hitm4k3r", "CMP"]

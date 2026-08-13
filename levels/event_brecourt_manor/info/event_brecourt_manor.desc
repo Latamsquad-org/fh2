@@ -1,0 +1,14 @@
+<map>
+	<name> Event Brécourt Manor </name>
+	<briefing locid="June 6th, 1944. A German gun battery was reported to be placed 6 miles off Utah beach, in the vicinity of Brecourt Manor. It was firing at Causeway #2, inflicting heavy casualties on the troops of the U.S. 4th Infantry Division that were trying to clear the landing zones and advance inland. On this morning Capt. Thomas Meehan III, the CO of E Company, 2nd Bn, 506th PIR, 101st Airborne Division, was killed in action when his C-47 transport plane was shot down while approaching the drop zone. So the command of EASY company was passed on to its XO, 1st Lt. Richard Winters. After linking up with his parent unit at the hamlet of Le Grand Chemin, Winters was ordered to eliminate the gun position with his company.
+
+Custom map by Aserafimov and the CMP mapping team.">map description for modders maps not localized (english only)</briefing>
+	<music> Common/Sound/Menu/music/phl_intro.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype players="16" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="headon" locid="GAMEMODE_DESCRIPTION_headon">Unlocalized test for this mode on this map</maptype>
+			<maptype players="64" type="headon" locid="GAMEMODE_DESCRIPTION_sectorpush">Unlocalized test for this mode on this map</maptype>
+		</mode>
+	</modes>
+</map>

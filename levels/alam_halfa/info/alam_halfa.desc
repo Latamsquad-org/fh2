@@ -1,0 +1,19 @@
+<map>
+	<name> Alam Halfa </name>
+	<briefing locid="LOADINGSCREEN_MAPDESCRIPTION_Alam_Halfa"></briefing>
+	<music> common/sound/menu/music/tmp_load_music.ogg </music>
+	<modes>
+		<mode type="gpm_cq">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype players="32" type="doubleassault" locid="GAMEMODE_DESCRIPTION_alam_halfa">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_alam_halfa">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="gpm_coop">
+			<maptype ai="1" players="16" type="doubleassault" locid="GAMEMODE_DESCRIPTION_COOP_doubleassault">Unlocalized test for this mode on this map</maptype>
+			<maptype ai="1" players="64" type="push" locid="GAMEMODE_DESCRIPTION_alam_halfa">Unlocalized test for this mode on this map</maptype>
+		</mode>
+		<mode type="sp1"/>
+		<mode type="sp3"/>
+	</modes>
+</map>
+
