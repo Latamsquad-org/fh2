@@ -84,5 +84,94 @@ class TestHelpers(unittest.TestCase):
         self.assertEqual(latamadmin.smaller_team(4, 4), 0)
 
 
+class TestInfoHelpers(unittest.TestCase):
+
+    def test_parse_bang(self):
+        self.assertEqual(latamadmin.parse_bang_command('!info'), ('info', []))
+        self.assertEqual(
+            latamadmin.parse_bang_command('HUD_TEXT_CHAT_TEAM !info chaziz last'),
+            ('info', ['chaziz', 'last']),
+        )
+        self.assertIsNone(latamadmin.parse_bang_command('info'))
+
+    def test_parse_info_args(self):
+        self.assertEqual(latamadmin.parse_info_args([]), ('round', None, False))
+        self.assertEqual(
+            latamadmin.parse_info_args(['chaziz']),
+            ('player', 'chaziz', False),
+        )
+        self.assertEqual(
+            latamadmin.parse_info_args(['chaziz', 'last']),
+            ('player', 'chaziz', True),
+        )
+        self.assertEqual(
+            latamadmin.parse_info_args(['#12']),
+            ('player', '#12', False),
+        )
+
+    def test_pretty_names(self):
+        self.assertEqual(latamadmin.pretty_map_name('hurtgen_forest'), 'Hurtgen Forest')
+        self.assertEqual(latamadmin.pretty_gamemode('gpm_cq'), 'Conquest')
+
+    def test_maplist_append(self):
+        text = (
+            'rem ignore\n'
+            'mapList.append ramelle gpm_cq 16\n'
+            'mapList.append alam_halfa gpm_cq 32\n'
+        )
+        entries = latamadmin.parse_maplist_append_text(text)
+        self.assertEqual(len(entries), 2)
+        self.assertEqual(entries[0]['name'], 'ramelle')
+        self.assertEqual(
+            latamadmin.format_map_entry(entries[0]),
+            'Ramelle (Conquest, 16)',
+        )
+
+    def test_maplist_list_output(self):
+        text = '0: ramelle gpm_cq 16\n1: "levels/alam_halfa" gpm_cq 32\n'
+        entries = latamadmin.parse_maplist_list_output(text)
+        self.assertEqual(entries[1]['name'], 'alam_halfa')
+        self.assertEqual(latamadmin.map_entry_at(entries, 0)['layer'], '16')
+        self.assertIsNone(latamadmin.map_entry_at(entries, 9))
+
+    def test_round_info_lines(self):
+        lines = latamadmin.format_round_info_lines({
+            'server_name': 'LATAMSQUAD FH2',
+            'current': 'Ramelle (Conquest, 16)',
+            'next': 'Alam Halfa (Conquest, 16)',
+            'players': 12,
+            'max_players': 100,
+            'team1': 6,
+            'team2': 6,
+            'tickets1': 250,
+            'tickets2': 248,
+            'team1_name': 'USA',
+            'team2_name': 'Germany',
+        })
+        self.assertEqual(lines[0], 'Servidor: LATAMSQUAD FH2')
+        self.assertTrue(lines[1].startswith('Mapa:'))
+        self.assertTrue('Tickets: USA 250 | Germany 248' in lines[-1])
+
+    def test_player_name_matches(self):
+        self.assertTrue(latamadmin.player_name_matches('[KKCK] Chaziz', 'chaz'))
+        self.assertTrue(latamadmin.player_name_matches('[KKCK] Chaziz', 'kkck'))
+        self.assertFalse(latamadmin.player_name_matches('Chaziz', 'bob'))
+
+    def test_player_info_lines(self):
+        lines = latamadmin.format_player_info_lines({
+            'name': 'Chaziz',
+            'team': 1,
+            'score': 10,
+            'kills': 3,
+            'deaths': 1,
+            'ping': 40,
+            'ip': '1.2.3.4',
+            'show_last': True,
+        })
+        self.assertTrue(lines[0].startswith('Chaziz:'))
+        self.assertEqual(lines[1], '----->1.2.3.4')
+        self.assertTrue('no disponible' in lines[2])
+
+
 if __name__ == '__main__':
     unittest.main()

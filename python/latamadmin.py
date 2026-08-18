@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # latamadmin.py - comandos de admin LatamSquad para FH2 (Python 2).
 # AutoBalance: max diferencia 2. !ab on / !ab off / !ab (estado).
+# !info: ronda (mapa, siguiente, tickets, jugadores). !info nombre: ficha admin.
 # El motor BF2 no dispara PlayerChangeTeams al usar setTeam, se puede revertir.
 
 import os
@@ -23,6 +24,15 @@ TEAM_2 = 2
 # Delay para recontar despues de un disconnect (el jugador puede seguir en la lista).
 REBALANCE_DELAY_SEC = 1.5
 AB_CMD_COOLDOWN_SEC = 2
+INFO_CMD_COOLDOWN_SEC = 3
+
+GAMEMODE_LABELS = {
+    'gpm_cq': 'Conquest',
+    'gpm_coop': 'Coop',
+    'sp1': 'SP1',
+    'sp2': 'SP2',
+    'sp3': 'SP3',
+}
 
 HUD_CHAT_PREFIXES = (
     'HUD_TEXT_CHAT_TEAM',
@@ -63,6 +73,209 @@ def parse_ab_command(msg_text):
     if arg in ('off', '0', 'false', 'disable'):
         return 'off'
     return 'status'
+
+
+def parse_bang_command(msg_text):
+    """Separa !comando y argumentos. Retorna (cmd, args) o None."""
+    text = strip_chat_hud_prefix(msg_text).strip()
+    if not text.startswith('!'):
+        return None
+    parts = text[1:].split()
+    if len(parts) < 1:
+        return None
+    cmd = parts[0].lower()
+    if cmd == '':
+        return None
+    return (cmd, parts[1:])
+
+
+def parse_info_args(args):
+    """
+    !info -> ('round', None, False)
+    !info nombre -> ('player', nombre, False)
+    !info nombre last -> ('player', nombre, True)
+    !info #12 -> ('player', '#12', False)
+    """
+    if args is None:
+        args = []
+    parts = [str(x) for x in list(args)]
+    last = False
+    if parts and parts[-1].lower() == 'last':
+        last = True
+        parts = parts[:-1]
+    if not parts:
+        return ('round', None, last)
+    return ('player', ' '.join(parts), last)
+
+
+def pretty_map_name(map_id):
+    """hurtgen_forest -> Hurtgen Forest."""
+    text = str(map_id or '').replace('\\', '/').split('/')[-1].strip()
+    if text == '':
+        return '?'
+    return text.replace('_', ' ').title()
+
+
+def pretty_gamemode(mode):
+    """gpm_cq -> Conquest."""
+    key = str(mode or '').strip().lower()
+    if key in GAMEMODE_LABELS:
+        return GAMEMODE_LABELS[key]
+    if key == '':
+        return '?'
+    return str(mode)
+
+
+def parse_maplist_append_text(text):
+    """Lee lineas mapList.append name mode layer."""
+    entries = []
+    if not text:
+        return entries
+    for line in str(text).splitlines():
+        raw = line.strip()
+        if raw.lower().startswith('rem '):
+            continue
+        parts = raw.split()
+        if len(parts) < 4:
+            continue
+        if parts[0].lower() != 'maplist.append':
+            continue
+        entries.append({
+            'name': parts[1],
+            'mode': parts[2],
+            'layer': parts[3],
+        })
+    return entries
+
+
+def parse_maplist_list_output(text):
+    """Parsea salida de mapList.list (N: name mode layer)."""
+    entries = []
+    if not text:
+        return entries
+    for line in str(text).splitlines():
+        raw = line.strip()
+        if ':' not in raw:
+            continue
+        _idx, rest = raw.split(':', 1)
+        rest = rest.strip().replace('"', '')
+        parts = rest.split()
+        if len(parts) < 3:
+            continue
+        name = parts[0].replace('\\', '/').split('/')[-1]
+        entries.append({
+            'name': name,
+            'mode': parts[1],
+            'layer': parts[2],
+        })
+    return entries
+
+
+def map_entry_at(entries, index):
+    """Entrada de rotacion por indice, o None."""
+    try:
+        idx = int(index)
+    except (TypeError, ValueError):
+        return None
+    if idx < 0 or idx >= len(entries):
+        return None
+    return entries[idx]
+
+
+def format_map_entry(entry):
+    """Ramelle (Conquest, 16) o ? si falta."""
+    if not entry:
+        return '?'
+    return '%s (%s, %s)' % (
+        pretty_map_name(entry.get('name')),
+        pretty_gamemode(entry.get('mode')),
+        entry.get('layer') or '?',
+    )
+
+
+def format_round_info_lines(data):
+    """Lineas de !info (ronda). data es un dict con claves opcionales."""
+    if data is None:
+        data = {}
+    lines = []
+    server = data.get('server_name') or '?'
+    lines.append('Servidor: %s' % server)
+    lines.append('Mapa: %s' % (data.get('current') or '?'))
+    lines.append('Siguiente: %s' % (data.get('next') or '?'))
+    players = data.get('players')
+    max_players = data.get('max_players')
+    t1 = data.get('team1')
+    t2 = data.get('team2')
+    if players is None:
+        players = '?'
+    if max_players is None:
+        max_players = '?'
+    if t1 is None:
+        t1 = '?'
+    if t2 is None:
+        t2 = '?'
+    lines.append('Jugadores: %s/%s | equipos %s vs %s' % (
+        players, max_players, t1, t2
+    ))
+    tk1 = data.get('tickets1')
+    tk2 = data.get('tickets2')
+    n1 = data.get('team1_name') or '1'
+    n2 = data.get('team2_name') or '2'
+    if tk1 is None:
+        tk1 = '?'
+    if tk2 is None:
+        tk2 = '?'
+    lines.append('Tickets: %s %s | %s %s' % (n1, tk1, n2, tk2))
+    return lines
+
+
+def player_name_matches(full_name, query):
+    """True si query esta en el nombre completo o sin tag [CLAN]."""
+    q = str(query or '').strip().lower()
+    n = str(full_name or '').strip().lower()
+    if q == '' or n == '':
+        return False
+    if n.find(q) != -1:
+        return True
+    if n.startswith('['):
+        end = n.find(']')
+        if end != -1:
+            n2 = n[end + 1:].lstrip()
+            if n2.find(q) != -1:
+                return True
+    return False
+
+
+def format_player_info_lines(data):
+    """Lineas de !info nombre (ficha). Equivalente FH2 de PR commandPlayerInfo."""
+    if data is None:
+        data = {}
+    name = data.get('name') or '?'
+    line1 = '%s:' % name
+    extra = []
+    team = data.get('team')
+    if team not in (None, ''):
+        extra.append('Equipo %s' % team)
+    score = data.get('score')
+    kills = data.get('kills')
+    deaths = data.get('deaths')
+    if score is not None or kills is not None or deaths is not None:
+        extra.append('Score %s K %s D %s' % (
+            score if score is not None else '?',
+            kills if kills is not None else '?',
+            deaths if deaths is not None else '?',
+        ))
+    ping = data.get('ping')
+    if ping not in (None, ''):
+        extra.append('Ping %s' % ping)
+    if extra:
+        line1 = '%s %s' % (line1, ' | '.join(extra))
+    lines = [line1]
+    ip = data.get('ip') or '?'
+    lines.append('----->%s' % ip)
+    if data.get('show_last'):
+        lines.append('Historial last: no disponible en FH2 (sin bans PR).')
+    return lines
 
 
 def other_team(team):
@@ -448,18 +661,206 @@ class AutoBalanceSystem(object):
         self._rebalance_timer = None
         self._rebalance(exclude=data)
 
-    def on_chat_message(self, player_id, msg_text, channel, flags):
-        if player_id == -1:
-            return
-        action = parse_ab_command(msg_text)
-        if action is None:
-            return
+    def _rcon(self, cmd):
+        if not _IN_GAME or host is None:
+            return ''
         try:
-            player = bf2.playerManager.getPlayerByIndex(player_id)
+            out = host.rcon_invoke(str(cmd))
         except Exception:
+            return ''
+        if out is None:
+            return ''
+        return str(out).strip()
+
+    def _rcon_int(self, cmd):
+        text = self._rcon(cmd)
+        try:
+            return int(text.split()[0])
+        except Exception:
+            return None
+
+    def _maplist_entries(self):
+        listed = parse_maplist_list_output(self._rcon('mapList.list'))
+        if listed:
+            return listed
+        path = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir)),
+            'settings',
+            'maplist.con',
+        )
+        try:
+            handle = open(path, 'r')
+            try:
+                text = handle.read()
+            finally:
+                handle.close()
+        except Exception:
+            return []
+        return parse_maplist_append_text(text)
+
+    def _team_label(self, team_num):
+        try:
+            name = bf2.gameLogic.getTeamName(int(team_num))
+            if name:
+                return str(name)
+        except Exception:
+            pass
+        return str(team_num)
+
+    def _tickets(self, team_num):
+        try:
+            return int(bf2.gameLogic.getTickets(int(team_num)))
+        except Exception:
+            return None
+
+    def _server_name(self):
+        try:
+            name = bf2.serverSettings.getServerName()
+            if name:
+                return str(name)
+        except Exception:
+            pass
+        text = self._rcon('sv.serverName')
+        if text:
+            return text.strip().strip('"')
+        return '?'
+
+    def _max_players(self):
+        try:
+            return int(bf2.serverSettings.getMaxPlayers())
+        except Exception:
+            pass
+        val = self._rcon_int('sv.maxPlayers')
+        if val is not None:
+            return val
+        return '?'
+
+    def _build_round_info(self):
+        entries = self._maplist_entries()
+        cur_idx = self._rcon_int('admin.currentLevel')
+        next_idx = self._rcon_int('admin.nextLevel')
+        current = map_entry_at(entries, cur_idx)
+        nxt = map_entry_at(entries, next_idx)
+        if current is None:
+            try:
+                raw = bf2.gameLogic.getMapName()
+                current = {'name': raw, 'mode': 'gpm_cq', 'layer': '?'}
+            except Exception:
+                pass
+        t1, t2 = self._team_counts()
+        humans = self._list_humans()
+        return {
+            'server_name': self._server_name(),
+            'current': format_map_entry(current),
+            'next': format_map_entry(nxt),
+            'players': len(humans),
+            'max_players': self._max_players(),
+            'team1': t1,
+            'team2': t2,
+            'tickets1': self._tickets(TEAM_1),
+            'tickets2': self._tickets(TEAM_2),
+            'team1_name': self._team_label(TEAM_1),
+            'team2_name': self._team_label(TEAM_2),
+        }
+
+    def _pm_lines(self, player, lines):
+        for line in lines:
+            self._pm(player, line)
+
+    def _player_ip(self, player):
+        try:
+            addr = str(player.getAddress() or '')
+        except Exception:
+            return '?'
+        if addr.count(':') == 1:
+            addr = addr.split(':', 1)[0]
+        if addr == '':
+            return '?'
+        return addr
+
+    def _player_ping(self, player):
+        try:
+            return int(player.getPing())
+        except Exception:
+            return None
+
+    def _player_score_tuple(self, player):
+        try:
+            return (
+                int(player.score.score),
+                int(player.score.kills),
+                int(player.score.deaths),
+            )
+        except Exception:
+            return (None, None, None)
+
+    def _find_players(self, query):
+        """Busca por #id o substring de nombre. Lista vacia si 0 o varios."""
+        q = str(query or '').strip()
+        if q.startswith('#'):
+            num = q[1:].strip()
+            try:
+                idx = int(num)
+            except ValueError:
+                return ('bad_id', [])
+            try:
+                found = bf2.playerManager.getPlayerByIndex(idx)
+            except Exception:
+                found = None
+            if not _player_valid_human(found):
+                return ('not_found', [])
+            return ('ok', [found])
+        matches = []
+        for player in self._list_humans():
+            if player_name_matches(_player_name(player), q):
+                matches.append(player)
+        if len(matches) == 0:
+            return ('not_found', [])
+        if len(matches) > 1:
+            return ('many', matches)
+        return ('ok', matches)
+
+    def _handle_info(self, player, args):
+        kind, query, show_last = parse_info_args(args)
+        if kind == 'round':
+            lines = format_round_info_lines(self._build_round_info())
+            self._pm_lines(player, lines)
             return
-        if not _player_valid_human(player):
+        if not self._is_admin(player):
+            self._pm(player, 'No tienes permiso para !info jugador')
             return
+        status, matches = self._find_players(query)
+        if status == 'bad_id':
+            self._pm(player, 'ID invalido. Usa !info #12')
+            return
+        if status == 'not_found':
+            self._pm(player, 'No se encontraron jugadores con el nombre %s' % query)
+            return
+        if status == 'many':
+            self._pm(player, 'Multiples jugadores encontrados con el nombre %s:' % query)
+            shown = matches[:4]
+            for other in shown:
+                try:
+                    idx = int(other.index)
+                except Exception:
+                    idx = '?'
+                self._pm(player, '#%s: %s' % (idx, _player_name(other)))
+            return
+        target = matches[0]
+        score, kills, deaths = self._player_score_tuple(target)
+        data = {
+            'name': _player_name(target),
+            'team': _safe_team(target),
+            'score': score,
+            'kills': kills,
+            'deaths': deaths,
+            'ping': self._player_ping(target),
+            'ip': self._player_ip(target),
+            'show_last': show_last,
+        }
+        self._pm_lines(player, format_player_info_lines(data))
+
+    def _handle_ab(self, player, action):
         if action == 'status':
             self._pm(player, self._status_text())
             return
@@ -467,10 +868,13 @@ class AutoBalanceSystem(object):
             self._pm(player, 'No tienes permiso para usar !ab on/off')
             return
         now = time.time()
-        last = self._cmd_cooldown.get(player_id, 0)
+        last = self._cmd_cooldown.get(player.index, 0)
         if now - last < AB_CMD_COOLDOWN_SEC:
             return
-        self._cmd_cooldown[player_id] = now
+        try:
+            self._cmd_cooldown[player.index] = now
+        except Exception:
+            pass
         if action == 'on':
             self.enabled = True
             self._say_all('AutoBalance: ON (max diferencia %d)' % MAX_TEAM_DIFF)
@@ -481,6 +885,34 @@ class AutoBalanceSystem(object):
             self.enabled = False
             self._say_all('AutoBalance: OFF')
             self._pm(player, self._status_text())
+
+    def on_chat_message(self, player_id, msg_text, channel, flags):
+        if player_id == -1:
+            return
+        parsed = parse_bang_command(msg_text)
+        if parsed is None:
+            return
+        cmd, args = parsed
+        if cmd not in ('ab', 'info'):
+            return
+        try:
+            player = bf2.playerManager.getPlayerByIndex(player_id)
+        except Exception:
+            return
+        if not _player_valid_human(player):
+            return
+        if cmd == 'info':
+            now = time.time()
+            last = self._cmd_cooldown.get('info:%s' % player_id, 0)
+            if now - last < INFO_CMD_COOLDOWN_SEC:
+                return
+            self._cmd_cooldown['info:%s' % player_id] = now
+            self._handle_info(player, args)
+            return
+        action = parse_ab_command(msg_text)
+        if action is None:
+            return
+        self._handle_ab(player, action)
 
     def on_player_change_teams(self, player, humanHasSpawned=None):
         if not self.enabled or self._moving:
