@@ -173,5 +173,71 @@ class TestInfoHelpers(unittest.TestCase):
         self.assertTrue('no disponible' in lines[2])
 
 
+class TestSetNext(unittest.TestCase):
+
+    def setUp(self):
+        self.catalog = [
+            {'name': 'ramelle', 'mode': 'gpm_cq', 'layer': '16', 'index': 0},
+            {'name': 'ramelle', 'mode': 'gpm_cq', 'layer': '32', 'index': 1},
+            {'name': 'battle_of_keren', 'mode': 'gpm_cq', 'layer': '16', 'index': 2},
+            {'name': 'hurtgen_forest', 'mode': 'gpm_cq', 'layer': '64', 'index': 3},
+            {'name': 'alam_halfa', 'mode': 'gpm_cq', 'layer': '16', 'index': None},
+        ]
+
+    def test_parse_empty_and_id(self):
+        self.assertEqual(latamadmin.parse_setnext_args([]).get('kind'), 'empty')
+        self.assertEqual(latamadmin.parse_setnext_args(['7']).get('map_id'), 7)
+
+    def test_parse_map_layer(self):
+        parsed = latamadmin.parse_setnext_args(['ramelle', '16'])
+        self.assertEqual(parsed['kind'], 'search')
+        self.assertEqual(parsed['query'], 'ramelle')
+        self.assertEqual(parsed['layer'], '16')
+        self.assertIsNone(parsed['mode'])
+
+    def test_parse_spaces_and_pr_layer(self):
+        parsed = latamadmin.parse_setnext_args(['hurtgen', 'forest', 'std'])
+        self.assertEqual(parsed['query'], 'hurtgen forest')
+        self.assertEqual(parsed['layer'], '64')
+        parsed2 = latamadmin.parse_setnext_args(['keren', 'cq', 'inf'])
+        self.assertEqual(parsed2['mode'], 'gpm_cq')
+        self.assertEqual(parsed2['layer'], '16')
+
+    def test_resolve_unique(self):
+        parsed = latamadmin.parse_setnext_args(['ramelle', '16'])
+        status, item, extra = latamadmin.resolve_setnext_target(self.catalog, parsed)
+        self.assertEqual(status, 'ok')
+        self.assertEqual(item['index'], 0)
+
+    def test_resolve_keren_substring(self):
+        parsed = latamadmin.parse_setnext_args(['keren', '16'])
+        status, item, extra = latamadmin.resolve_setnext_target(self.catalog, parsed)
+        self.assertEqual(status, 'ok')
+        self.assertEqual(item['name'], 'battle_of_keren')
+
+    def test_resolve_hurtgen_spaces(self):
+        parsed = latamadmin.parse_setnext_args(['hurtgen', 'forest', '64'])
+        status, item, extra = latamadmin.resolve_setnext_target(self.catalog, parsed)
+        self.assertEqual(status, 'ok')
+        self.assertEqual(item['name'], 'hurtgen_forest')
+
+    def test_resolve_many_without_layer(self):
+        parsed = latamadmin.parse_setnext_args(['ramelle'])
+        status, item, extra = latamadmin.resolve_setnext_target(self.catalog, parsed)
+        self.assertEqual(status, 'many')
+        self.assertEqual(len(extra), 2)
+
+    def test_resolve_id(self):
+        parsed = latamadmin.parse_setnext_args(['3'])
+        status, item, extra = latamadmin.resolve_setnext_target(self.catalog, parsed)
+        self.assertEqual(status, 'ok')
+        self.assertEqual(item['name'], 'hurtgen_forest')
+
+    def test_map_name_matches(self):
+        self.assertTrue(latamadmin.map_name_matches('battle_of_keren', 'keren'))
+        self.assertTrue(latamadmin.map_name_matches('hurtgen_forest', 'hurtgen forest'))
+        self.assertFalse(latamadmin.map_name_matches('ramelle', 'keren'))
+
+
 if __name__ == '__main__':
     unittest.main()
