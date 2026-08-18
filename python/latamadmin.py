@@ -17,6 +17,98 @@ except Exception:
     host = None
     _IN_GAME = False
 
+# ---------------------------------------------------------------------------
+# Comandos LatamAdmin
+# Edita niveles aca (igual que adm_adminPowerLevels en realityconfig_admin.py).
+#
+# 0   = high (admins_high en admins.toml)
+# 1   = admin (admins_mid)
+# 2   = mod (admins_low)
+# 777 = todos
+#
+# El numero MAS BAJO tiene MAS poder.
+# Si un comando vale 2, high + admin + mod pueden usarlo.
+# Si vale 0, solo high.
+# Si vale 777, cualquiera.
+#
+# Comandos actuales:
+#   !ab              ver AutoBalance
+#   !ab on / !ab off encender/apagar AutoBalance  (clave ab_toggle)
+#   !info            info de ronda
+#   !info nombre     ficha de jugador
+#   !setnext / !sn   elegir el siguiente mapa
+# ---------------------------------------------------------------------------
+LEVEL_HIGH = 0
+LEVEL_ADMIN = 1
+LEVEL_MOD = 2
+LEVEL_EVERYONE = 777
+
+COMMAND_ALIASES = {
+    'sn': 'setnext',
+}
+
+COMMAND_LEVELS = {
+    'ab': LEVEL_EVERYONE,
+    'ab_toggle': LEVEL_MOD,
+    'info': LEVEL_MOD,
+    'setnext': LEVEL_MOD,
+}
+
+
+def resolve_command_name(cmd):
+    """Aplica alias (!sn -> setnext)."""
+    name = str(cmd or '').strip().lower()
+    if name in COMMAND_ALIASES:
+        return COMMAND_ALIASES[name]
+    return name
+
+
+def required_command_level(cmd):
+    """Nivel pedido por el comando, o None si no existe."""
+    name = resolve_command_name(cmd)
+    if name not in COMMAND_LEVELS:
+        return None
+    try:
+        return int(COMMAND_LEVELS[name])
+    except (TypeError, ValueError):
+        return None
+
+
+def is_chat_command(cmd):
+    """True si se escribe en chat (!ab, !info, !setnext, !sn)."""
+    name = resolve_command_name(cmd)
+    if name == 'ab_toggle':
+        return False
+    return name in COMMAND_LEVELS
+
+
+def admin_tag_to_power(tag):
+    """high/mid/low -> 0/1/2. Sin tag -> 777."""
+    if tag == 'high':
+        return LEVEL_HIGH
+    if tag == 'mid':
+        return LEVEL_ADMIN
+    if tag == 'low':
+        return LEVEL_MOD
+    return LEVEL_EVERYONE
+
+
+def can_use_command(cmd, player_power):
+    """True si player_power (0/1/2/777) alcanza el nivel del comando."""
+    req = required_command_level(cmd)
+    if req is None:
+        return False
+    if req >= LEVEL_EVERYONE:
+        return True
+    try:
+        power = int(player_power)
+    except (TypeError, ValueError):
+        return False
+    if power >= LEVEL_EVERYONE:
+        return False
+    return power <= req
+
+
 # Max jugadores de diferencia entre equipos (10 vs 8 ok, 11 vs 8 no).
 MAX_TEAM_DIFF = 2
 TEAM_1 = 1
@@ -710,9 +802,10 @@ class AutoBalanceSystem(object):
             )
             _debug_log('AutoBalance ON (max diff %d)' % MAX_TEAM_DIFF)
 
-    def _is_admin(self, player):
+    def _admin_tag(self, player):
+        """high / mid / low / None segun admins.toml."""
         if self._admin_fn is None:
-            return False
+            return None
         try:
             level = self._admin_fn(
                 _player_name(player),
@@ -721,8 +814,19 @@ class AutoBalanceSystem(object):
                 self._admin_low,
             )
         except Exception:
-            return False
-        return level in ('high', 'mid', 'low')
+            return None
+        if level in ('high', 'mid', 'low'):
+            return level
+        return None
+
+    def _is_admin(self, player):
+        return self._admin_tag(player) is not None
+
+    def _player_power(self, player):
+        return admin_tag_to_power(self._admin_tag(player))
+
+    def _can_use(self, cmd, player):
+        return can_use_command(cmd, self._player_power(player))
 
     def _pm(self, player, msg):
         if not _IN_GAME or player is None or host is None:
@@ -1055,7 +1159,7 @@ class AutoBalanceSystem(object):
         return ('ok', matches)
 
     def _handle_info(self, player, args):
-        if not self._is_admin(player):
+        if not self._can_use('info', player):
             self._pm(player, 'No tienes permiso para usar !info')
             return
         kind, query, show_last = parse_info_args(args)
@@ -1096,9 +1200,15 @@ class AutoBalanceSystem(object):
 
     def _handle_ab(self, player, action):
         if action == 'status':
+            if not self._can_use('ab', player):
+                self._pm(player, 'No tienes permiso para usar !ab')
+                return
             self._pm(player, self._status_text())
             return
-        if not self._is_admin(player):
+        toggle_cmd = 'ab_toggle'
+        if required_command_level(toggle_cmd) is None:
+            toggle_cmd = 'ab'
+        if not self._can_use(toggle_cmd, player):
             self._pm(player, 'No tienes permiso para usar !ab on/off')
             return
         now = time.time()
@@ -1175,6 +1285,9 @@ class AutoBalanceSystem(object):
         return True
 
     def _handle_setnext(self, player, args):
+        if not self._can_use('setnext', player):
+            self._pm(player, 'No tienes permiso para usar !setnext')
+            return
         parsed = parse_setnext_args(args)
         catalog = self._setnext_catalog()
         status, item, extras = resolve_setnext_target(catalog, parsed)
@@ -1206,16 +1319,17 @@ class AutoBalanceSystem(object):
         if parsed is None:
             return
         cmd, args = parsed
-        if cmd not in ('ab', 'info', 'setnext', 'sn'):
+        if not is_chat_command(cmd):
             return
+        name = resolve_command_name(cmd)
         try:
             player = bf2.playerManager.getPlayerByIndex(player_id)
         except Exception:
             return
         if not _player_valid_human(player):
             return
-        if cmd == 'info':
-            if not self._is_admin(player):
+        if name == 'info':
+            if not self._can_use('info', player):
                 self._pm(player, 'No tienes permiso para usar !info')
                 return
             now = time.time()
@@ -1225,8 +1339,8 @@ class AutoBalanceSystem(object):
             self._cmd_cooldown['info:%s' % player_id] = now
             self._handle_info(player, args)
             return
-        if cmd in ('setnext', 'sn'):
-            if not self._is_admin(player):
+        if name == 'setnext':
+            if not self._can_use('setnext', player):
                 self._pm(player, 'No tienes permiso para usar !setnext')
                 return
             now = time.time()
@@ -1236,10 +1350,11 @@ class AutoBalanceSystem(object):
             self._cmd_cooldown['setnext:%s' % player_id] = now
             self._handle_setnext(player, args)
             return
-        action = parse_ab_command(msg_text)
-        if action is None:
-            return
-        self._handle_ab(player, action)
+        if name == 'ab':
+            action = parse_ab_command(msg_text)
+            if action is None:
+                return
+            self._handle_ab(player, action)
 
     def on_player_change_teams(self, player, humanHasSpawned=None):
         if not self.enabled or self._moving:

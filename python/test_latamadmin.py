@@ -239,5 +239,52 @@ class TestSetNext(unittest.TestCase):
         self.assertFalse(latamadmin.map_name_matches('ramelle', 'keren'))
 
 
+class TestCommandLevels(unittest.TestCase):
+
+    def test_aliases(self):
+        self.assertEqual(latamadmin.resolve_command_name('sn'), 'setnext')
+        self.assertEqual(latamadmin.resolve_command_name('SN'), 'setnext')
+        self.assertEqual(latamadmin.resolve_command_name('info'), 'info')
+
+    def test_chat_commands(self):
+        self.assertTrue(latamadmin.is_chat_command('ab'))
+        self.assertTrue(latamadmin.is_chat_command('info'))
+        self.assertTrue(latamadmin.is_chat_command('setnext'))
+        self.assertTrue(latamadmin.is_chat_command('sn'))
+        self.assertFalse(latamadmin.is_chat_command('ab_toggle'))
+        self.assertFalse(latamadmin.is_chat_command('stats'))
+
+    def test_admin_tag_to_power(self):
+        self.assertEqual(latamadmin.admin_tag_to_power('high'), 0)
+        self.assertEqual(latamadmin.admin_tag_to_power('mid'), 1)
+        self.assertEqual(latamadmin.admin_tag_to_power('low'), 2)
+        self.assertEqual(latamadmin.admin_tag_to_power(None), 777)
+
+    def test_defaults_everyone_can_see_ab(self):
+        self.assertTrue(latamadmin.can_use_command('ab', 777))
+        self.assertTrue(latamadmin.can_use_command('ab', 2))
+        self.assertTrue(latamadmin.can_use_command('ab', 0))
+
+    def test_defaults_mod_can_toggle_and_info(self):
+        self.assertTrue(latamadmin.can_use_command('ab_toggle', 2))
+        self.assertTrue(latamadmin.can_use_command('info', 2))
+        self.assertTrue(latamadmin.can_use_command('setnext', 2))
+        self.assertTrue(latamadmin.can_use_command('sn', 1))
+        self.assertFalse(latamadmin.can_use_command('ab_toggle', 777))
+        self.assertFalse(latamadmin.can_use_command('info', 777))
+        self.assertFalse(latamadmin.can_use_command('setnext', 777))
+
+    def test_high_only_if_level_zero(self):
+        old = dict(latamadmin.COMMAND_LEVELS)
+        try:
+            latamadmin.COMMAND_LEVELS['setnext'] = latamadmin.LEVEL_HIGH
+            self.assertTrue(latamadmin.can_use_command('setnext', 0))
+            self.assertFalse(latamadmin.can_use_command('setnext', 1))
+            self.assertFalse(latamadmin.can_use_command('setnext', 2))
+        finally:
+            latamadmin.COMMAND_LEVELS.clear()
+            latamadmin.COMMAND_LEVELS.update(old)
+
+
 if __name__ == '__main__':
     unittest.main()
