@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # latamadmin.py - comandos de admin LatamSquad para FH2 (Python 2).
-# AutoBalance: max diferencia 2. !ab on / !ab off / !ab (estado).
+# AutoBalance: max diferencia 2. !ab on / !ab off.
 # !info: solo admins. !setnext / !sn: parser flexible de mapa y layer.
 # El motor BF2 no dispara PlayerChangeTeams al usar setTeam, se puede revertir.
 
@@ -32,8 +32,7 @@ except Exception:
 # Si vale 777, cualquiera.
 #
 # Comandos actuales:
-#   !ab              ver AutoBalance
-#   !ab on / !ab off encender/apagar AutoBalance  (clave ab_toggle)
+#   !ab on / !ab off encender/apagar AutoBalance
 #   !info            info de ronda
 #   !info nombre     ficha de jugador
 #   !setnext / !sn   elegir el siguiente mapa
@@ -48,8 +47,7 @@ COMMAND_ALIASES = {
 }
 
 COMMAND_LEVELS = {
-    'ab': LEVEL_EVERYONE,
-    'ab_toggle': LEVEL_MOD,
+    'ab': LEVEL_MOD,
     'info': LEVEL_MOD,
     'setnext': LEVEL_MOD,
 }
@@ -76,10 +74,7 @@ def required_command_level(cmd):
 
 def is_chat_command(cmd):
     """True si se escribe en chat (!ab, !info, !setnext, !sn)."""
-    name = resolve_command_name(cmd)
-    if name == 'ab_toggle':
-        return False
-    return name in COMMAND_LEVELS
+    return resolve_command_name(cmd) in COMMAND_LEVELS
 
 
 def admin_tag_to_power(tag):
@@ -183,8 +178,8 @@ def strip_chat_hud_prefix(msg_text):
 
 def parse_ab_command(msg_text):
     """
-    Parsea !ab / !ab on / !ab off.
-    Retorna None, 'status', 'on' o 'off'.
+    Parsea !ab on / !ab off.
+    Retorna None, 'need_arg', 'on' o 'off'.
     """
     text = strip_chat_hud_prefix(msg_text).strip()
     if not text.startswith('!'):
@@ -195,13 +190,13 @@ def parse_ab_command(msg_text):
     if parts[0].lower() != 'ab':
         return None
     if len(parts) == 1:
-        return 'status'
+        return 'need_arg'
     arg = parts[1].lower()
     if arg in ('on', '1', 'true', 'enable'):
         return 'on'
     if arg in ('off', '0', 'false', 'disable'):
         return 'off'
-    return 'status'
+    return 'need_arg'
 
 
 def parse_bang_command(msg_text):
@@ -1199,17 +1194,11 @@ class AutoBalanceSystem(object):
         self._pm_lines(player, format_player_info_lines(data))
 
     def _handle_ab(self, player, action):
-        if action == 'status':
-            if not self._can_use('ab', player):
-                self._pm(player, 'No tienes permiso para usar !ab')
-                return
-            self._pm(player, self._status_text())
+        # Sin permiso: silencio (no avisar a jugadores comunes).
+        if not self._can_use('ab', player):
             return
-        toggle_cmd = 'ab_toggle'
-        if required_command_level(toggle_cmd) is None:
-            toggle_cmd = 'ab'
-        if not self._can_use(toggle_cmd, player):
-            self._pm(player, 'No tienes permiso para usar !ab on/off')
+        if action != 'on' and action != 'off':
+            self._pm(player, "Debes especificar 'on' u 'off'.")
             return
         now = time.time()
         last = self._cmd_cooldown.get(player.index, 0)

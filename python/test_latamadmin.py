@@ -6,10 +6,11 @@ import latamadmin
 
 class TestParseAb(unittest.TestCase):
 
-    def test_status(self):
-        self.assertEqual(latamadmin.parse_ab_command('!ab'), 'status')
-        self.assertEqual(latamadmin.parse_ab_command('!AB'), 'status')
-        self.assertEqual(latamadmin.parse_ab_command('HUD_TEXT_CHAT_TEAM !ab'), 'status')
+    def test_need_arg(self):
+        self.assertEqual(latamadmin.parse_ab_command('!ab'), 'need_arg')
+        self.assertEqual(latamadmin.parse_ab_command('!AB'), 'need_arg')
+        self.assertEqual(latamadmin.parse_ab_command('HUD_TEXT_CHAT_TEAM !ab'), 'need_arg')
+        self.assertEqual(latamadmin.parse_ab_command('!ab foo'), 'need_arg')
 
     def test_on_off(self):
         self.assertEqual(latamadmin.parse_ab_command('!ab on'), 'on')
@@ -251,7 +252,6 @@ class TestCommandLevels(unittest.TestCase):
         self.assertTrue(latamadmin.is_chat_command('info'))
         self.assertTrue(latamadmin.is_chat_command('setnext'))
         self.assertTrue(latamadmin.is_chat_command('sn'))
-        self.assertFalse(latamadmin.is_chat_command('ab_toggle'))
         self.assertFalse(latamadmin.is_chat_command('stats'))
 
     def test_admin_tag_to_power(self):
@@ -260,19 +260,16 @@ class TestCommandLevels(unittest.TestCase):
         self.assertEqual(latamadmin.admin_tag_to_power('low'), 2)
         self.assertEqual(latamadmin.admin_tag_to_power(None), 777)
 
-    def test_defaults_everyone_can_see_ab(self):
-        self.assertTrue(latamadmin.can_use_command('ab', 777))
+    def test_defaults_mod_can_ab_info_setnext(self):
         self.assertTrue(latamadmin.can_use_command('ab', 2))
         self.assertTrue(latamadmin.can_use_command('ab', 0))
-
-    def test_defaults_mod_can_toggle_and_info(self):
-        self.assertTrue(latamadmin.can_use_command('ab_toggle', 2))
+        self.assertFalse(latamadmin.can_use_command('ab', 777))
         self.assertTrue(latamadmin.can_use_command('info', 2))
         self.assertTrue(latamadmin.can_use_command('setnext', 2))
         self.assertTrue(latamadmin.can_use_command('sn', 1))
-        self.assertFalse(latamadmin.can_use_command('ab_toggle', 777))
         self.assertFalse(latamadmin.can_use_command('info', 777))
         self.assertFalse(latamadmin.can_use_command('setnext', 777))
+        self.assertFalse(latamadmin.can_use_command('ab_toggle', 2))
 
     def test_high_only_if_level_zero(self):
         old = dict(latamadmin.COMMAND_LEVELS)
