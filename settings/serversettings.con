@@ -28,7 +28,8 @@ rem Message displayed in loading screen
 sv.welcomeMessage "Bienvenido a LATAMSQUAD Forgotten Hope 2! Lee las reglas en discord.gg/latamsquad"
 
 sv.punkBuster 0
-sv.allowFreeCam 1
+rem 0 = al morir la camara mira al cielo (BF2 vanilla). 1 = vuelo libre por el mapa.
+sv.allowFreeCam 0
 sv.allowExternalViews 1
 sv.allowNoseCam 1
 sv.hitIndicator 1
