@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # latamadmin.py - comandos de admin LatamSquad para FH2 (Python 2).
 # AutoBalance: max diferencia 2. !ab on / !ab off / !ab (estado).
-# !info: ronda (mapa, siguiente, tickets, jugadores). !info nombre: ficha admin.
+# !info: solo admins. Ronda (mapa, siguiente, tickets) o ficha de jugador.
 # El motor BF2 no dispara PlayerChangeTeams al usar setTeam, se puede revertir.
 
 import os
@@ -821,13 +821,13 @@ class AutoBalanceSystem(object):
         return ('ok', matches)
 
     def _handle_info(self, player, args):
+        if not self._is_admin(player):
+            self._pm(player, 'No tienes permiso para usar !info')
+            return
         kind, query, show_last = parse_info_args(args)
         if kind == 'round':
             lines = format_round_info_lines(self._build_round_info())
             self._pm_lines(player, lines)
-            return
-        if not self._is_admin(player):
-            self._pm(player, 'No tienes permiso para !info jugador')
             return
         status, matches = self._find_players(query)
         if status == 'bad_id':
@@ -902,6 +902,9 @@ class AutoBalanceSystem(object):
         if not _player_valid_human(player):
             return
         if cmd == 'info':
+            if not self._is_admin(player):
+                self._pm(player, 'No tienes permiso para usar !info')
+                return
             now = time.time()
             last = self._cmd_cooldown.get('info:%s' % player_id, 0)
             if now - last < INFO_CMD_COOLDOWN_SEC:
