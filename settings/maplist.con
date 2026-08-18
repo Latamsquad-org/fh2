@@ -4,10 +4,17 @@ rem |                          Forgotten Hope 2 Map List                        
 rem |-------------------------------------------------------------------------------|
 rem |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-rem mapList.append <mapname> <gamemode> <size>
+rem mapList.append <mapname> gpm_cq <size>
+rem 128 = Tiny (smallest). 16 = Small. 32 = Medium. 64 = Big.
+rem Only Conquest layers that exist in each map. No 32: operation_hyacinth, tunis_1943.
+rem Firing range maps were removed.
+
 rem |-------------------------------------------------------------------------------|
-rem |          						Conquest - Tiny						            |
+rem |  Conquest - Tiny - 128 (smallest layouts)
 rem |-------------------------------------------------------------------------------|
+mapList.append event_st_marie_du_mont gpm_cq 128
+mapList.append gold_beach gpm_cq 128
+mapList.append la_hardt gpm_cq 128
 mapList.append la_horgne gpm_cq 128
 mapList.append ogledow gpm_cq 128
 mapList.append seelow gpm_cq 128
@@ -15,10 +22,10 @@ mapList.append sidi_rezegh gpm_cq 128
 
 
 rem |-------------------------------------------------------------------------------|
-rem |          						Conquest - Small - 16 						    |
+rem |  Conquest - Small - 16
 rem |-------------------------------------------------------------------------------|
-mapList.append ramelle gpm_cq 16
 mapList.append alam_halfa gpm_cq 16
+mapList.append anctoville_1944 gpm_cq 16
 mapList.append arad gpm_cq 16
 mapList.append bardia gpm_cq 16
 mapList.append bastogne gpm_cq 16
@@ -27,50 +34,210 @@ mapList.append battle_of_keren gpm_cq 16
 mapList.append crete_1941 gpm_cq 16
 mapList.append dukla_pass gpm_cq 16
 mapList.append el_alamein gpm_cq 16
+mapList.append eppeldorf gpm_cq 16
+mapList.append event_aa_breakthrough gpm_cq 16
+mapList.append event_aa_storm gpm_cq 16
+mapList.append event_aa_valirisk gpm_cq 16
+mapList.append event_brecourt_manor gpm_cq 16
+mapList.append event_la_fiere gpm_cq 16
+mapList.append event_la_gleize gpm_cq 16
+mapList.append event_st_marie_du_mont gpm_cq 16
+mapList.append event_ste_mere_eglise gpm_cq 16
 mapList.append falaise_pocket gpm_cq 16
+mapList.append fall_of_tobruk gpm_cq 16
 mapList.append flavion gpm_cq 16
 mapList.append gazala gpm_cq 16
 mapList.append giarabub gpm_cq 16
 mapList.append gold_beach gpm_cq 16
+mapList.append hurtgen_forest gpm_cq 16
 mapList.append ihantala gpm_cq 16
+mapList.append la_hardt gpm_cq 16
 mapList.append la_horgne gpm_cq 16
 mapList.append lebisey gpm_cq 16
 mapList.append lenino gpm_cq 16
 mapList.append mareth_line gpm_cq 16
+mapList.append medjez_el_bab gpm_cq 16
 mapList.append mersa_matruh gpm_cq 16
+mapList.append meuse_river gpm_cq 16
 mapList.append motovskiy_bay gpm_cq 16
 mapList.append mount_olympus gpm_cq 16
+mapList.append naverdalen gpm_cq 16
 mapList.append ogledow gpm_cq 16
 mapList.append omaha_beach gpm_cq 16
 mapList.append operation_cobra gpm_cq 16
+mapList.append operation_goodwood gpm_cq 16
 mapList.append operation_hyacinth gpm_cq 16
+mapList.append operation_little_saturn gpm_cq 16
 mapList.append operation_luttich gpm_cq 16
 mapList.append operation_mars gpm_cq 16
 mapList.append operation_totalize gpm_cq 16
 mapList.append pegasus gpm_cq 16
+mapList.append pogostje gpm_cq 16
+mapList.append pointe_du_hoc gpm_cq 16
+mapList.append port_en_bessin gpm_cq 16
+mapList.append purple_heart_lane gpm_cq 16
+mapList.append ramelle gpm_cq 16
 mapList.append sammatus gpm_cq 16
 mapList.append seelow gpm_cq 16
 mapList.append sidi_bou_zid gpm_cq 16
 mapList.append sidi_rezegh gpm_cq 16
+mapList.append siege_of_tobruk gpm_cq 16
 mapList.append st_lo_breakthrough gpm_cq 16
 mapList.append st_vith gpm_cq 16
 mapList.append stonne gpm_cq 16
 mapList.append studienka gpm_cq 16
 mapList.append supercharge gpm_cq 16
 mapList.append tali gpm_cq 16
+mapList.append the_battle_for_sfakia gpm_cq 16
+mapList.append tunis_1943 gpm_cq 16
 mapList.append verdenne gpm_cq 16
 mapList.append villers_bocage gpm_cq 16
 mapList.append vossenack gpm_cq 16
 
+
 rem |-------------------------------------------------------------------------------|
-rem |          						Conquest - Medium - 32 							|
+rem |  Conquest - Medium - 32
 rem |-------------------------------------------------------------------------------|
+mapList.append alam_halfa gpm_cq 32
+mapList.append anctoville_1944 gpm_cq 32
+mapList.append arad gpm_cq 32
+mapList.append bardia gpm_cq 32
+mapList.append bastogne gpm_cq 32
+mapList.append battle_of_brest gpm_cq 32
+mapList.append battle_of_keren gpm_cq 32
+mapList.append crete_1941 gpm_cq 32
+mapList.append dukla_pass gpm_cq 32
+mapList.append el_alamein gpm_cq 32
+mapList.append eppeldorf gpm_cq 32
+mapList.append event_aa_breakthrough gpm_cq 32
+mapList.append event_aa_storm gpm_cq 32
+mapList.append event_aa_valirisk gpm_cq 32
+mapList.append event_brecourt_manor gpm_cq 32
+mapList.append event_la_fiere gpm_cq 32
+mapList.append event_la_gleize gpm_cq 32
+mapList.append event_st_marie_du_mont gpm_cq 32
+mapList.append event_ste_mere_eglise gpm_cq 32
+mapList.append falaise_pocket gpm_cq 32
+mapList.append fall_of_tobruk gpm_cq 32
+mapList.append flavion gpm_cq 32
+mapList.append gazala gpm_cq 32
+mapList.append giarabub gpm_cq 32
+mapList.append gold_beach gpm_cq 32
+mapList.append hurtgen_forest gpm_cq 32
+mapList.append ihantala gpm_cq 32
+mapList.append la_hardt gpm_cq 32
+mapList.append la_horgne gpm_cq 32
+mapList.append lebisey gpm_cq 32
+mapList.append lenino gpm_cq 32
+mapList.append mareth_line gpm_cq 32
+mapList.append medjez_el_bab gpm_cq 32
+mapList.append mersa_matruh gpm_cq 32
+mapList.append meuse_river gpm_cq 32
+mapList.append motovskiy_bay gpm_cq 32
+mapList.append mount_olympus gpm_cq 32
+mapList.append naverdalen gpm_cq 32
+mapList.append ogledow gpm_cq 32
+mapList.append omaha_beach gpm_cq 32
+mapList.append operation_cobra gpm_cq 32
+mapList.append operation_goodwood gpm_cq 32
+mapList.append operation_little_saturn gpm_cq 32
+mapList.append operation_luttich gpm_cq 32
+mapList.append operation_mars gpm_cq 32
+mapList.append operation_totalize gpm_cq 32
+mapList.append pegasus gpm_cq 32
+mapList.append pogostje gpm_cq 32
+mapList.append pointe_du_hoc gpm_cq 32
+mapList.append port_en_bessin gpm_cq 32
+mapList.append purple_heart_lane gpm_cq 32
 mapList.append ramelle gpm_cq 32
-
-
+mapList.append sammatus gpm_cq 32
+mapList.append seelow gpm_cq 32
+mapList.append sidi_bou_zid gpm_cq 32
+mapList.append sidi_rezegh gpm_cq 32
+mapList.append siege_of_tobruk gpm_cq 32
+mapList.append st_lo_breakthrough gpm_cq 32
+mapList.append st_vith gpm_cq 32
+mapList.append stonne gpm_cq 32
+mapList.append studienka gpm_cq 32
+mapList.append supercharge gpm_cq 32
+mapList.append tali gpm_cq 32
+mapList.append the_battle_for_sfakia gpm_cq 32
+mapList.append verdenne gpm_cq 32
+mapList.append villers_bocage gpm_cq 32
+mapList.append vossenack gpm_cq 32
 
 
 rem |-------------------------------------------------------------------------------|
-rem |          						Conquest - Big - 64 							|
+rem |  Conquest - Big - 64
 rem |-------------------------------------------------------------------------------|
+mapList.append alam_halfa gpm_cq 64
+mapList.append anctoville_1944 gpm_cq 64
+mapList.append arad gpm_cq 64
+mapList.append bardia gpm_cq 64
+mapList.append bastogne gpm_cq 64
+mapList.append battle_of_brest gpm_cq 64
+mapList.append battle_of_keren gpm_cq 64
+mapList.append crete_1941 gpm_cq 64
+mapList.append dukla_pass gpm_cq 64
+mapList.append el_alamein gpm_cq 64
+mapList.append eppeldorf gpm_cq 64
+mapList.append event_aa_breakthrough gpm_cq 64
+mapList.append event_aa_storm gpm_cq 64
+mapList.append event_aa_valirisk gpm_cq 64
+mapList.append event_brecourt_manor gpm_cq 64
+mapList.append event_la_fiere gpm_cq 64
+mapList.append event_la_gleize gpm_cq 64
+mapList.append event_st_marie_du_mont gpm_cq 64
+mapList.append event_ste_mere_eglise gpm_cq 64
+mapList.append falaise_pocket gpm_cq 64
+mapList.append fall_of_tobruk gpm_cq 64
+mapList.append flavion gpm_cq 64
+mapList.append gazala gpm_cq 64
+mapList.append giarabub gpm_cq 64
+mapList.append gold_beach gpm_cq 64
+mapList.append hurtgen_forest gpm_cq 64
+mapList.append ihantala gpm_cq 64
+mapList.append la_hardt gpm_cq 64
+mapList.append la_horgne gpm_cq 64
+mapList.append lebisey gpm_cq 64
+mapList.append lenino gpm_cq 64
+mapList.append mareth_line gpm_cq 64
+mapList.append medjez_el_bab gpm_cq 64
+mapList.append mersa_matruh gpm_cq 64
+mapList.append meuse_river gpm_cq 64
+mapList.append motovskiy_bay gpm_cq 64
+mapList.append mount_olympus gpm_cq 64
+mapList.append naverdalen gpm_cq 64
+mapList.append ogledow gpm_cq 64
+mapList.append omaha_beach gpm_cq 64
+mapList.append operation_cobra gpm_cq 64
+mapList.append operation_goodwood gpm_cq 64
+mapList.append operation_hyacinth gpm_cq 64
+mapList.append operation_little_saturn gpm_cq 64
+mapList.append operation_luttich gpm_cq 64
+mapList.append operation_mars gpm_cq 64
+mapList.append operation_totalize gpm_cq 64
+mapList.append pegasus gpm_cq 64
+mapList.append pogostje gpm_cq 64
+mapList.append pointe_du_hoc gpm_cq 64
+mapList.append port_en_bessin gpm_cq 64
+mapList.append purple_heart_lane gpm_cq 64
 mapList.append ramelle gpm_cq 64
+mapList.append sammatus gpm_cq 64
+mapList.append seelow gpm_cq 64
+mapList.append sidi_bou_zid gpm_cq 64
+mapList.append sidi_rezegh gpm_cq 64
+mapList.append siege_of_tobruk gpm_cq 64
+mapList.append st_lo_breakthrough gpm_cq 64
+mapList.append st_vith gpm_cq 64
+mapList.append stonne gpm_cq 64
+mapList.append studienka gpm_cq 64
+mapList.append supercharge gpm_cq 64
+mapList.append tali gpm_cq 64
+mapList.append the_battle_for_sfakia gpm_cq 64
+mapList.append tunis_1943 gpm_cq 64
+mapList.append verdenne gpm_cq 64
+mapList.append villers_bocage gpm_cq 64
+mapList.append vossenack gpm_cq 64
+
+
