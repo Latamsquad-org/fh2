@@ -83,3 +83,11 @@ if is_bf2:
         print('latamstats loaded [python/game/__init__.py]')
     except Exception:
         print('latamstats failed to load [python/game/__init__.py]')
+
+# AutoBalance LatamSquad: !ab on / !ab off (max diferencia 2)
+if is_bf2:
+    try:
+        import latamadmin  # noqa: F401
+        print('latamadmin loaded [python/game/__init__.py]')
+    except Exception:
+        print('latamadmin failed to load [python/game/__init__.py]')
