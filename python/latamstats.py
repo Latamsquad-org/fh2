@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # latamstats.py - estadisticas FH2 -> stats.latamsquad.org/api/upload_fh2.php
 # Adaptado desde Project Reality; SQLite y payload compatibles, endpoint separado.
+# Identidad: nombre de soldado (sin tag de clan). El CD-key hash de FH2 rota y no se guarda.
 
 import json
 import re
@@ -502,6 +503,48 @@ def parse_player_name(full_name):
     return (parts[0], ' '.join(parts[1:]))
 
 
+def is_cdkey_hash(value):
+    """True si parece un CD-key hash FH2 (32 hex). Esos valores ya no se usan como ID."""
+    if value is None:
+        return False
+    text = str(value).strip().lower()
+    if len(text) != 32:
+        return False
+    for ch in text:
+        if ch not in '0123456789abcdef':
+            return False
+    return True
+
+
+def normalize_name_key(name):
+    """Minúsculas, espacios colapsados, max 64. No parsea clan."""
+    key = ' '.join(str(name or '').split())
+    if key == '':
+        return ''
+    try:
+        key = key.lower()
+    except Exception:
+        pass
+    if len(key) > 64:
+        key = key[:64]
+    return key
+
+
+def normalize_player_identity(full_name):
+    """
+    Clave estable: nombre sin tag de clan, minusculas, max 64 chars.
+    El clan se guarda aparte (player_clan) y puede cambiar sin romper historial.
+    """
+    _clan, name = parse_player_name(full_name)
+    key = name if name else (full_name or '')
+    return normalize_name_key(key)
+
+
+def identity_from_stored_name(player_name):
+    """Normaliza player_name ya separado del clan (filas SQLite/web)."""
+    return normalize_name_key(player_name)
+
+
 def kd_ratio(kills, deaths):
     """K/D: si deaths==0 devuelve kills como float; si no kills/deaths."""
     k = int(kills or 0)
@@ -793,8 +836,90 @@ class StatsStore(object):
                 % table_name
             )
 
+    def _migrate_hash_ids_to_names(self, conn):
+        """Reescribe player_id hash -> nombre y fusiona duplicados del mismo nick."""
+        conn.row_factory = sqlite3.Row
+        for table_name in STATS_TABLE_NAMES:
+            table_name = _validate_stats_table_name(table_name)
+            rows = conn.execute(
+                'SELECT player_id, player_clan, player_name, player_country, '
+                'score, kills, deaths, rounds, treasures, created, seen '
+                'FROM %s' % table_name
+            ).fetchall()
+            for row in rows:
+                old_id = row['player_id']
+                if not is_cdkey_hash(old_id):
+                    continue
+                new_id = identity_from_stored_name(row['player_name'])
+                if new_id == '' or is_cdkey_hash(new_id):
+                    conn.execute(
+                        'DELETE FROM %s WHERE player_id = ?' % table_name,
+                        (old_id,),
+                    )
+                    continue
+                existing = conn.execute(
+                    'SELECT player_id, player_clan, player_name, player_country, '
+                    'score, kills, deaths, rounds, treasures, created, seen '
+                    'FROM %s WHERE player_id = ?' % table_name,
+                    (new_id,),
+                ).fetchone()
+                if existing is None:
+                    conn.execute(
+                        'UPDATE %s SET player_id = ? WHERE player_id = ?'
+                        % table_name,
+                        (new_id, old_id),
+                    )
+                    continue
+                merged = merge_round_into_totals(
+                    _stats_row_to_dict(existing),
+                    {
+                        'player_id': new_id,
+                        'player_clan': row['player_clan'],
+                        'player_name': row['player_name'],
+                        'player_country': row['player_country'],
+                        'score': row['score'],
+                        'kills': row['kills'],
+                        'deaths': row['deaths'],
+                        'rounds': row['rounds'],
+                        'treasures': row['treasures'],
+                    },
+                )
+                created_a = str(existing['created'] or '')
+                created_b = str(row['created'] or '')
+                seen_a = str(existing['seen'] or '')
+                seen_b = str(row['seen'] or '')
+                created = created_a if (
+                    created_a and (not created_b or created_a <= created_b)
+                ) else created_b
+                seen = seen_a if (
+                    seen_a and (not seen_b or seen_a >= seen_b)
+                ) else seen_b
+                conn.execute(
+                    'UPDATE %s SET player_clan = ?, player_name = ?, '
+                    'player_country = ?, score = ?, kills = ?, deaths = ?, '
+                    'rounds = ?, treasures = ?, created = ?, seen = ? '
+                    'WHERE player_id = ?' % table_name,
+                    (
+                        merged['player_clan'],
+                        merged['player_name'],
+                        merged.get('player_country') or '',
+                        merged['score'],
+                        merged['kills'],
+                        merged['deaths'],
+                        merged['rounds'],
+                        merged['treasures'],
+                        created,
+                        seen,
+                        new_id,
+                    ),
+                )
+                conn.execute(
+                    'DELETE FROM %s WHERE player_id = ?' % table_name,
+                    (old_id,),
+                )
+
     def ensure_schema(self):
-        """Crea stats1..stats4, migra stats -> stats1, country y treasures."""
+        """Crea stats1..stats4, migra stats -> stats1, country, treasures y hash->nombre."""
         conn = self._connect()
         try:
             self._migrate_legacy_stats_table(conn)
@@ -802,6 +927,7 @@ class StatsStore(object):
                 conn.executescript(_create_stats_table_sql(table_name))
                 self._ensure_country_column(conn, table_name)
                 _ensure_treasures_column(conn, table_name)
+            self._migrate_hash_ids_to_names(conn)
             conn.commit()
         finally:
             conn.close()
@@ -822,8 +948,10 @@ class StatsStore(object):
             conn.close()
 
     def upsert_round_delta(self, delta):
-        """Inserta jugador nuevo o suma stats vía merge_round_into_totals."""
+        """Inserta jugador nuevo o suma stats via merge_round_into_totals."""
         player_id = delta['player_id']
+        if is_cdkey_hash(player_id):
+            return
         existing = self.get_player(player_id)
         country = str(delta.get('player_country') or '').strip().upper()
         conn = self._connect()
@@ -912,34 +1040,21 @@ def _debug_log(message):
         pass
 
 
-def get_player_cdkey_hash(player):
-    """
-    CD-key hash 32 hex via admin.listplayers (ID estable en FH2).
-    Equivalente practico a realityserver.getPlayerHash en PR.
-    """
+def get_player_identity(player):
+    """Identidad por nombre de soldado (sin clan). No usa CD-key hash."""
     if player is None:
         return None
     try:
-        idx = int(player.index)
+        full_name = player.getName()
     except Exception:
         return None
-    if host is None:
+    key = normalize_player_identity(full_name)
+    if key == '' or is_cdkey_hash(key) or len(key) > 64:
         return None
-    try:
-        plyrs = host.rcon_invoke('admin.listplayers')
-    except Exception:
+    lower = key.lower()
+    if lower in ('notset', 'none', '0'):
         return None
-    if plyrs is None:
-        return None
-    text = str(plyrs)
-    expr = r'^Id:\s*%s\s+-.*\s*CD-key hash:\s*(?P<Hash>[0-9a-fA-F]*)' % idx
-    match = re.search(expr, text, re.MULTILINE)
-    if not match:
-        return None
-    key_hash = match.group('Hash')
-    if key_hash is None or len(key_hash) != 32:
-        return None
-    return key_hash.lower()
+    return key
 
 
 def get_connected_players():
@@ -972,7 +1087,7 @@ class StatsSystem(object):
         self.store = StatsStore(STATS_DB_PATH, STATS_SERVER_ID)
         self.store.ensure_schema()
         self.round_snapshots = {}
-        # player_hash -> timestamp del ultimo !stats
+        # player_id (nombre) -> timestamp del ultimo !stats
         self._stats_cmd_cooldown = {}
         host.registerGameStatusHandler(self.on_game_status_changed)
         host.registerHandler('PlayerDisconnect', self.on_player_disconnect, 1)
@@ -1019,27 +1134,27 @@ class StatsSystem(object):
             return
 
         try:
-            player_hash = get_player_cdkey_hash(player)
+            player_key = get_player_identity(player)
         except Exception:
-            player_hash = None
-        if not self._valid_player_id(player_hash):
-            self._pm(player, 'No se pudo obtener tu ID de jugador')
+            player_key = None
+        if not self._valid_player_id(player_key):
+            self._pm(player, 'No se pudo obtener tu nombre de jugador')
             return
 
         now = time.time()
-        last = self._stats_cmd_cooldown.get(player_hash, 0)
+        last = self._stats_cmd_cooldown.get(player_key, 0)
         if now - last < STATS_CMD_COOLDOWN_SEC:
             self._pm(player, 'Espera unos segundos antes de usar !stats')
             return
-        self._stats_cmd_cooldown[player_hash] = now
+        self._stats_cmd_cooldown[player_key] = now
 
         try:
-            row = self.store.get_player(player_hash)
+            row = self.store.get_player(player_key)
             if row is None:
                 self._pm(player, 'Sin stats registradas en este servidor')
                 return
             players = self.store.list_all_players()
-            position = rank_position_by_xp(players, player_hash)
+            position = rank_position_by_xp(players, player_key)
             if position is None:
                 position = 1
             self._pm(player, format_stats_message(row, position))
@@ -1061,19 +1176,21 @@ class StatsSystem(object):
 
     @staticmethod
     def _valid_player_id(player_id):
-        """Descarta valores invalidos (None, vacio, NOTSET, no-hash)."""
+        """Descarta vacio, NOTSET y CD-key hash (ya no es identidad)."""
         if isinstance(player_id, bool):
             return False
         if player_id is None or player_id == '':
             return False
-        text = str(player_id).strip().lower()
-        if text in ('notset', 'none', '0'):
+        text = str(player_id).strip()
+        if text == '':
             return False
-        if len(text) != 32:
+        lower = text.lower()
+        if lower in ('notset', 'none', '0'):
             return False
-        for ch in text:
-            if ch not in '0123456789abcdef':
-                return False
+        if is_cdkey_hash(text):
+            return False
+        if len(text) > 64:
+            return False
         return True
 
     @staticmethod
@@ -1098,7 +1215,7 @@ class StatsSystem(object):
 
     def _snapshot_player(self, player):
         """Construye el delta completo de la ronda para un jugador."""
-        player_id = get_player_cdkey_hash(player)
+        player_id = get_player_identity(player)
         if not self._valid_player_id(player_id):
             return None
 
