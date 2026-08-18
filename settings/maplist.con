@@ -12,7 +12,6 @@ rem Firing range maps were removed.
 rem |-------------------------------------------------------------------------------|
 rem |  Conquest - Tiny - 128 (smallest layouts)
 rem |-------------------------------------------------------------------------------|
-mapList.append event_st_marie_du_mont gpm_cq 128
 mapList.append gold_beach gpm_cq 128
 mapList.append la_hardt gpm_cq 128
 mapList.append la_horgne gpm_cq 128
@@ -41,7 +40,6 @@ mapList.append event_aa_valirisk gpm_cq 16
 mapList.append event_brecourt_manor gpm_cq 16
 mapList.append event_la_fiere gpm_cq 16
 mapList.append event_la_gleize gpm_cq 16
-mapList.append event_st_marie_du_mont gpm_cq 16
 mapList.append event_ste_mere_eglise gpm_cq 16
 mapList.append falaise_pocket gpm_cq 16
 mapList.append fall_of_tobruk gpm_cq 16
@@ -115,7 +113,6 @@ mapList.append event_aa_valirisk gpm_cq 32
 mapList.append event_brecourt_manor gpm_cq 32
 mapList.append event_la_fiere gpm_cq 32
 mapList.append event_la_gleize gpm_cq 32
-mapList.append event_st_marie_du_mont gpm_cq 32
 mapList.append event_ste_mere_eglise gpm_cq 32
 mapList.append falaise_pocket gpm_cq 32
 mapList.append fall_of_tobruk gpm_cq 32
@@ -187,7 +184,6 @@ mapList.append event_aa_valirisk gpm_cq 64
 mapList.append event_brecourt_manor gpm_cq 64
 mapList.append event_la_fiere gpm_cq 64
 mapList.append event_la_gleize gpm_cq 64
-mapList.append event_st_marie_du_mont gpm_cq 64
 mapList.append event_ste_mere_eglise gpm_cq 64
 mapList.append falaise_pocket gpm_cq 64
 mapList.append fall_of_tobruk gpm_cq 64
