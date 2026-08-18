@@ -36,7 +36,7 @@ sv.hitIndicator 1
 sv.maxPlayers 100
 sv.numPlayersNeededToStart 1
 sv.notEnoughPlayersRestartDelay 15
-sv.startDelay 15
+sv.startDelay 30
 sv.endDelay 15
 sv.spawnTime 15
 sv.manDownTime 2.5
